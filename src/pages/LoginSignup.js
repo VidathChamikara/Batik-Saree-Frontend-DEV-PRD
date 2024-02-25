@@ -7,7 +7,7 @@ import { FaFacebookF, FaTwitter, FaGoogle, FaLinkedinIn } from 'react-icons/fa';
 import Swal from 'sweetalert2'
 
 function LoginSignupPage() {
-  const [isSignUpMode, setIsSignUpMode] = useState(false);
+  const [isSignUpMode, setIsSignUpMode] = useState(true);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -38,7 +38,7 @@ function LoginSignupPage() {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data, "Data pass to api");
+        //console.log(data, "Data pass to api");
         if (data.status === "Already Registred") {
           Swal.fire({
             icon: 'error',
@@ -76,7 +76,7 @@ function LoginSignupPage() {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data, "Data pass to api");
+        //console.log(data, "Data pass to api");
         if (data.error === "Invalid Username") {
           Swal.fire({
             icon: 'error',
@@ -107,7 +107,7 @@ function LoginSignupPage() {
       <div className="forms-container">
         <div className="signin-signup">
           <form action="#" className="sign-in-form" onSubmit={handleSignIn}>
-            <h2 className="title">Sign in</h2>
+            <h2 className="title">Login</h2>
             <div className="input-field">
               <i className="fas fa-user"></i>
               <input type="text" placeholder="Username" onChange={(e) => setUsername(e.target.value)}/>
@@ -134,7 +134,7 @@ function LoginSignupPage() {
             </div>
           </form>
           <form action="#" className="sign-up-form" onSubmit={ handleSignUp}>
-            <h2 className="title">Sign up</h2>
+            <h2 className="title">Register</h2>
             <div className="input-field">
               <i className="fas fa-user"></i>
               <input type="text" placeholder="Username" onChange={(e) => setUsername(e.target.value)}/>
@@ -147,7 +147,7 @@ function LoginSignupPage() {
               <i className="fas fa-lock"></i>
               <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
             </div>
-            <input type="submit" className="btn" value="Sign up" />
+            <input type="submit" className="btn" value="Register" />
             <p className="social-text">Connect with our social platforms</p>
             <div className="social-media">
               <a href="https://www.facebook.com" className="social-icon">
@@ -176,7 +176,7 @@ function LoginSignupPage() {
             our wide range of textile products at Batik Saree.
             </p>
             <button className="btn transparent" onClick={handleSignUpClick}>
-              Sign up
+              Register
             </button>
           </div>
           <img src={signup} className="image" alt="" />
@@ -185,11 +185,11 @@ function LoginSignupPage() {
           <div className="content">
             <h3>One of us ?</h3>
             <p>
-            Please sign in to access your account and 
+            Please login to access your account and 
             explore our exclusive collection of fabrics and accessories.
             </p>
             <button className="btn transparent" onClick={handleSignInClick}>
-              Sign in
+              Login
             </button>
           </div>
           <img src={log} className="image" alt="" />
