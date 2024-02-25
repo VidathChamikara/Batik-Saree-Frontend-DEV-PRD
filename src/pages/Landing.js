@@ -4,6 +4,8 @@ import "../css/home.css"; // Make sure to import your CSS file
 import header1 from "../images/header-1.jpg";
 import header2 from "../images/header-2.jpg";
 import sample from "../images/sample.webm";
+import contact1 from "../images/contact1.avif"
+import contact2 from "../images/contact2.jpg";
 
 function Landing() {
   const [menuActive, setMenuActive] = useState(false);
@@ -97,7 +99,7 @@ function Landing() {
             <span className="heading__2">Contact Us</span>
           </h1>
           <p style={{ textAlign: "justify" }}>
-           Reach out to us for any inquiry.
+            Reach out to us for any inquiry.
           </p>
           <section className="get_in_touch">
             <h1 className="title">Form</h1>
@@ -148,12 +150,13 @@ function Landing() {
           </section>
         </div>
         <div className="image__container">
-          <img src={header1} alt="header" />
-          <img src={header2} alt="header" />
+        <img src={contact1} alt="header" />
+          <img src={contact2} alt="header" />
           <div className="image__content">
             <ul>
-              <li>You can design your saree</li>
-              <li>Newest Pattern</li>
+              <li>+123-456-789</li>
+              <li>batik.saree@gmail.com</li>
+              <li>123, Station Rd, Col</li>
             </ul>
           </div>
         </div>
