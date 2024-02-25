@@ -1,15 +1,15 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Landing from "./pages/Landing";
 import LoginSignup from "./pages/LoginSignup";
-import Home from "./pages/Home";
 import ShirtDesigner from "./pages/ShirtDesigner";
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<LoginSignup />} />
-        <Route path="/home" element={<Home />} />
+      <Route path="/" element={<Landing />} />
+        <Route path="/loginSignup" element={<LoginSignup />} />       
         <Route path="/shirt" element={<ShirtDesigner />} />
         {/* Other routes for your application */}
       </Routes>
