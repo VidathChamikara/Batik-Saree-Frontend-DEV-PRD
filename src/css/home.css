@@ -322,6 +322,7 @@ nav {
 /* styles.css */
 .get_in_touch {
   max-width: 800px;
+  width: 100%;
   margin: 50px auto;
   position: relative;
   box-shadow: 0 10px 30px 0px rgba(0, 0, 0, 0.1);
@@ -335,8 +336,8 @@ nav {
   font-size: 3em;
   line-height: 48px;
   padding-bottom: 20px;
-  color: #5543ca;
-  background:  linear-gradient(125deg, #5c48ee, #064497);
+  color: #0f1e6a;
+  background:  linear-gradient(125deg, #5c48ee, #0f1e6a);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -351,8 +352,7 @@ nav {
   width: 100%;
   height: 36px;
   border-width: 0 0 2px 0;
-  border-color: #5543ca;
-  font-size: 18px;
+  border-color: #5c48ee; 
   line-height: 26px;
   font-weight: 400;
 }
@@ -369,8 +369,7 @@ nav {
 .contact-form .label {
   position: absolute;
   left: 20px;
-  bottom: 11px;
-  font-size: 18px;
+  bottom: 21px; 
   line-height: 26px;
   font-weight: 400;
   color: #5c48ee;
@@ -381,7 +380,7 @@ nav {
 
 .contact-form .submit-btn {
   display: inline-block;
-  background-image: linear-gradient(125deg, #5c48ee, #064497);
+  background-image: linear-gradient(125deg, #5c48ee, #0f1e6a);
   color: #fff;
   text-transform: uppercase;
   letter-spacing: 2px;
