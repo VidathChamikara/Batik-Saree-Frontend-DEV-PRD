@@ -4,14 +4,56 @@ import "../css/home.css"; // Make sure to import your CSS file
 import header1 from "../images/header-1.jpg";
 import header2 from "../images/header-2.jpg";
 import sample from "../images/sample.webm";
-import contact1 from "../images/contact1.avif"
+import contact1 from "../images/contact1.avif";
 import contact2 from "../images/contact2.jpg";
+import Swal from 'sweetalert2'
 
 function Landing() {
   const [menuActive, setMenuActive] = useState(false);
+  const [name, SetName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
 
   const toggleMenu = () => {
     setMenuActive(!menuActive);
+  };
+
+  const handleSignUp = (e) => {
+    e.preventDefault();
+    fetch("http://localhost:5000/api/contact/postMessage", {
+      method: "POST",
+      crossDomain: true,
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: JSON.stringify({
+        name,
+        email,
+        message,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        //console.log(data, "Data pass to api");
+        if (data.status === "error") {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Not Submit Your Responce. Try Again...',
+          });
+        } else if (data.status === "ok") {
+          Swal.fire({
+            icon: 'success',
+            title: 'Success',
+            text: 'Successfully Submit Your Responce. We will reply as soon as possible. Thank You...',
+          }).then(() => {
+            window.location.reload();
+          });
+        }
+        
+      });
   };
 
   return (
@@ -106,51 +148,64 @@ function Landing() {
 
             <div className="contact-container">
               <div className="contact-form row">
-                <div className="form-field col-lg-6">
-                  <input id="name" className="input-text" type="text" name="" />
-                  <label htmlFor="name" className="label">
-                    Name
-                  </label>
-                </div>
+                <form action="#" onSubmit={ handleSignUp}>
+                  <div className="form-field col-lg-6">
+                    <input
+                      id="name"
+                      className="input-text"
+                      type="text"
+                      name="name"
+                      onChange={(e) => SetName(e.target.value)}
+                      required
+                    />
+                    <label htmlFor="name" className="label">
+                      Name
+                    </label>
+                  </div>
 
-                <div className="form-field col-lg-6">
-                  <input
-                    id="email"
-                    className="input-text"
-                    type="email"
-                    name=""
-                  />
-                  <label htmlFor="email" className="label">
-                    Email
-                  </label>
-                </div>
+                  <div className="form-field col-lg-6">
+                    <input
+                      id="email"
+                      className="input-text"
+                      type="email"
+                      name="email"
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                    />
+                    <label htmlFor="email" className="label">
+                      Email
+                    </label>
+                  </div>
 
-                <div className="form-field col-lg-12">
-                  <input
-                    id="message"
-                    className="input-text"
-                    type="text"
-                    name=""
-                  />
-                  <label htmlFor="message" className="label">
-                    Message
-                  </label>
-                </div>
+                  <div className="form-field col-lg-12">
+                    <input
+                      id="message"
+                      className="input-text"
+                      type="text"
+                      name="message"
+                      onChange={(e) => setMessage(e.target.value)}
+                      required
+                    />
+                    <label htmlFor="message" className="label">
+                      Message
+                    </label>
+                  </div>
 
-                <div className="form-field col-lg-12">
-                  <input
-                    className="submit-btn"
-                    type="submit"
-                    value="Submit"
-                    name=""
-                  />
-                </div>
+                  <div className="form-field col-lg-12">
+                    <input
+                      className="submit-btn"
+                      type="submit"
+                      value="Submit"
+                      name="submit"
+                    />
+                  </div>
+                </form>
               </div>
             </div>
           </section>
         </div>
         <div className="image__container">
-        <img src={contact1} alt="header" />
+          <img src={contact1} alt="header" />
           <img src={contact2} alt="header" />
           <div className="image__content">
             <ul>
