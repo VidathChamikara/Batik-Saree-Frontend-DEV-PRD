@@ -3,8 +3,8 @@ import { useState } from "react";
 import log from "../images/Log.png";
 import signup from "../images/Signup.png";
 import "../css/style.css"; // Make sure to import your CSS file
-import { FaFacebookF, FaTwitter, FaGoogle, FaLinkedinIn } from 'react-icons/fa';
-import Swal from 'sweetalert2'
+import { FaFacebookF, FaTwitter, FaGoogle, FaLinkedinIn } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 function LoginSignupPage() {
   const [isSignUpMode, setIsSignUpMode] = useState(true);
@@ -22,7 +22,7 @@ function LoginSignupPage() {
 
   const handleSignUp = (e) => {
     e.preventDefault();
-    fetch("http://localhost:5000/api/register", {
+    fetch("http://localhost:5000/api/user/register", {
       method: "POST",
       crossDomain: true,
       headers: {
@@ -41,33 +41,32 @@ function LoginSignupPage() {
         //console.log(data, "Data pass to api");
         if (data.status === "Already Registred") {
           Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Already Registered with this Email. Can not sign up again',
+            icon: "error",
+            title: "Oops...",
+            text: "Already Registered with this Email. Can not sign up again",
           });
         } else if (data.status === "ok") {
           Swal.fire({
-            icon: 'success',
-            title: 'Success',
-            text: 'Successfully Registered. Check your email. Login credentials are there.',
+            icon: "success",
+            title: "Success",
+            text: "Successfully Registered. Check your email. Login credentials are there.",
           }).then(() => {
             window.location.reload();
           });
         }
-        
       });
   };
 
   const handleSignIn = (e) => {
     e.preventDefault();
     console.log(username, password);
-    fetch("http://localhost:5000/api/login-user", {
+    fetch("http://localhost:5000/api/user/login-user", {
       method: "POST",
       crossDomain: true,
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
-        "Access-Control-Allow-Origin": "*"
+        "Access-Control-Allow-Origin": "*",
       },
       body: JSON.stringify({
         username,
@@ -79,28 +78,27 @@ function LoginSignupPage() {
         //console.log(data, "Data pass to api");
         if (data.error === "Invalid Username") {
           Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Invalid Username.',
+            icon: "error",
+            title: "Oops...",
+            text: "Invalid Username.",
           });
         } else if (data.error === "Invalid Password") {
           Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Invalid Password.',
+            icon: "error",
+            title: "Oops...",
+            text: "Invalid Password.",
           });
         } else if (data.status === "ok") {
           Swal.fire({
-            icon: 'success',
-            title: 'Success',
-            text: 'Login Successful.',
+            icon: "success",
+            title: "Success",
+            text: "Login Successful.",
           });
           window.localStorage.setItem("token", data.data);
-          window.localStorage.setItem("loggedIn", true);          
+          window.localStorage.setItem("loggedIn", true);
         }
       });
   };
-  
 
   return (
     <div className={`container ${isSignUpMode ? "sign-up-mode" : ""}`}>
@@ -110,11 +108,21 @@ function LoginSignupPage() {
             <h2 className="title">Login</h2>
             <div className="input-field">
               <i className="fas fa-user"></i>
-              <input type="text" placeholder="Username" onChange={(e) => setUsername(e.target.value)}/>
+              <input
+                type="text"
+                placeholder="Username"
+                onChange={(e) => setUsername(e.target.value)}
+                required
+              />
             </div>
             <div className="input-field">
               <i className="fas fa-lock"></i>
-              <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
+              <input
+                type="password"
+                placeholder="Password"
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
             </div>
             <input type="submit" value="Login" className="btn solid" />
             <p className="social-text">Connect with our social platforms</p>
@@ -133,19 +141,34 @@ function LoginSignupPage() {
               </a>
             </div>
           </form>
-          <form action="#" className="sign-up-form" onSubmit={ handleSignUp}>
+          <form action="#" className="sign-up-form" onSubmit={handleSignUp}>
             <h2 className="title">Register</h2>
             <div className="input-field">
               <i className="fas fa-user"></i>
-              <input type="text" placeholder="Username" onChange={(e) => setUsername(e.target.value)}/>
+              <input
+                type="text"
+                placeholder="Username"
+                onChange={(e) => setUsername(e.target.value)}
+                required
+              />
             </div>
             <div className="input-field">
               <i className="fas fa-envelope"></i>
-              <input type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)}/>
+              <input
+                type="email"
+                placeholder="Email"
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
             </div>
             <div className="input-field">
               <i className="fas fa-lock"></i>
-              <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
+              <input
+                type="password"
+                placeholder="Password"
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
             </div>
             <input type="submit" className="btn" value="Register" />
             <p className="social-text">Connect with our social platforms</p>
@@ -172,8 +195,8 @@ function LoginSignupPage() {
           <div className="content">
             <h3>New here ?</h3>
             <p>
-            Create an account to unlock exclusive offers and gain access to 
-            our wide range of textile products at Batik Saree.
+              Create an account to unlock exclusive offers and gain access to
+              our wide range of textile products at Batik Saree.
             </p>
             <button className="btn transparent" onClick={handleSignUpClick}>
               Register
@@ -185,8 +208,8 @@ function LoginSignupPage() {
           <div className="content">
             <h3>One of us ?</h3>
             <p>
-            Please login to access your account and 
-            explore our exclusive collection of fabrics and accessories.
+              Please login to access your account and explore our exclusive
+              collection of fabrics and accessories.
             </p>
             <button className="btn transparent" onClick={handleSignInClick}>
               Login
