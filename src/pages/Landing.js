@@ -7,7 +7,7 @@ import sample from "../images/sample.webm";
 import contact1 from "../images/contact1.avif";
 import contact2 from "../images/contact2.jpg";
 import Swal from "sweetalert2";
-import "font-awesome/css/font-awesome.min.css"; // Font Awesome styles
+
 
 function Landing() {
   const [menuActive, setMenuActive] = useState(false);
@@ -60,7 +60,7 @@ function Landing() {
     <div>
       <nav>
         <div className="nav__logo">
-          <a href="https://www.facebook.com">Batik Saree</a>
+          <a href="#home">Batik Saree</a>
         </div>
         <div
           className={`nav__burger ${menuActive ? "active" : ""}`}
@@ -209,9 +209,9 @@ function Landing() {
           <img src={contact2} alt="header" />
           <div className="image__content">
             <ul>
-              <li>+123-456-789</li>
+              <li>+94 762002585</li>
               <li>batik.saree@gmail.com</li>
-              <li>123, Station Rd, Col</li>
+              <li>Maradana, Colombo</li>
             </ul>
           </div>
         </div>
@@ -233,17 +233,17 @@ function Landing() {
           <div>
             <i className="fa fa-map-marker"></i>
             <p>
-              <span>Ghaziabad</span> Delhi
+              <span>Maradana</span>  Colombo
             </p>
           </div>
           <div>
             <i className="fa fa-phone"></i>
-            <p>+91 74**9**258</p>
+            <p>+94 762002585</p>
           </div>
           <div>
             <i className="fa fa-envelope"></i>
             <p>
-              <a href="mailto:sagar00001.co@gmail.com">xyz@gmail.com</a>
+              <a href="mailto:sagar00001.co@gmail.com">batik.saree@gmail.com</a>
             </p>
           </div>
         </div>
