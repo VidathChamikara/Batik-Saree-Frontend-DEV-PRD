@@ -93,6 +93,7 @@ const ShirtDesigner = () => {
 
   return (
     <div>
+       <canvas ref={canvasRef}></canvas>
       <label>
         Selected Color For Shirt: <span>{selectedColor}</span>
       </label>
@@ -126,7 +127,7 @@ const ShirtDesigner = () => {
         
       </div>
       <button onClick={addFlower}>Add Flower</button>
-      <canvas ref={canvasRef}></canvas>
+     
     </div>
   );
 };

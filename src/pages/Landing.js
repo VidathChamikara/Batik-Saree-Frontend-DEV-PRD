@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "../css/home.css"; // Make sure to import your CSS file
+import "../css/landing.css"; // Make sure to import your CSS file
 import header1 from "../images/header-1.jpg";
 import header2 from "../images/header-2.jpg";
 import sample from "../images/sample.webm";
 import contact1 from "../images/contact1.avif";
 import contact2 from "../images/contact2.jpg";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
+import "font-awesome/css/font-awesome.min.css"; // Font Awesome styles
 
 function Landing() {
   const [menuActive, setMenuActive] = useState(false);
@@ -39,20 +40,19 @@ function Landing() {
         //console.log(data, "Data pass to api");
         if (data.status === "error") {
           Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Not Submit Your Responce. Try Again...',
+            icon: "error",
+            title: "Oops...",
+            text: "Not Submit Your Responce. Try Again...",
           });
         } else if (data.status === "ok") {
           Swal.fire({
-            icon: 'success',
-            title: 'Success',
-            text: 'Successfully Submit Your Responce. We will reply as soon as possible. Thank You...',
+            icon: "success",
+            title: "Success",
+            text: "Successfully Submit Your Responce. We will reply as soon as possible. Thank You...",
           }).then(() => {
             window.location.reload();
           });
         }
-        
       });
   };
 
@@ -148,7 +148,7 @@ function Landing() {
 
             <div className="contact-container">
               <div className="contact-form row">
-                <form action="#" onSubmit={ handleSignUp}>
+                <form action="#" onSubmit={handleSignUp}>
                   <div className="form-field col-lg-6">
                     <input
                       id="name"
@@ -216,6 +216,65 @@ function Landing() {
           </div>
         </div>
       </section>
+      <footer className="footer-distributed">
+        <div className="footer-left">
+          <h3>
+            Batik<span>Saree</span>
+          </h3>
+          <p className="footer-links">
+            <a href="#home">Home</a> |<a href="#about">About</a> |
+            <a href="#contact">Contact</a>{" "}
+          </p>
+          <p className="footer-company-name">
+            Copyright © 2024 <strong>Batik Saree</strong> All rights reserved
+          </p>
+        </div>
+        <div className="footer-center">
+          <div>
+            <i className="fa fa-map-marker"></i>
+            <p>
+              <span>Ghaziabad</span> Delhi
+            </p>
+          </div>
+          <div>
+            <i className="fa fa-phone"></i>
+            <p>+91 74**9**258</p>
+          </div>
+          <div>
+            <i className="fa fa-envelope"></i>
+            <p>
+              <a href="mailto:sagar00001.co@gmail.com">xyz@gmail.com</a>
+            </p>
+          </div>
+        </div>
+        <div className="footer-right">
+          <p className="footer-company-about">
+            <span>About the company</span>
+            <strong>Sagar Developer</strong> is a Youtube channel where you can
+            find more creative CSS Animations and Effects along with HTML,
+            JavaScript, and Projects using C/C++.
+          </p>
+          <div className="footer-icons">
+            <a href="https://www.facebook.com">
+              {" "}
+              <i class="fa fa-facebook"></i>
+            </a>
+            <a href="https://www.instagram.com">
+              <i class="fa fa-instagram"></i>
+            </a>
+            <a href="https://www.linkedin.com">
+              {" "}
+              <i class="fa fa-linkedin"></i>
+            </a>
+            <a href="https://www.twitter.com">
+              <i class="fa fa-twitter"></i>
+            </a>
+            <a href="https://www.youtube.com">
+              <i class="fa fa-youtube"></i>
+            </a>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }

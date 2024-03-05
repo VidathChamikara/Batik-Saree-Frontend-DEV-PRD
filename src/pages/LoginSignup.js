@@ -96,6 +96,7 @@ function LoginSignupPage() {
           });
           window.localStorage.setItem("token", data.data);
           window.localStorage.setItem("loggedIn", true);
+          window.location.href = "./userDetails";
         }
       });
   };
@@ -107,7 +108,7 @@ function LoginSignupPage() {
           <form action="#" className="sign-in-form" onSubmit={handleSignIn}>
             <h2 className="title">Login</h2>
             <div className="input-field">
-              <i className="fas fa-user"></i>
+              <i className="fa fa-user"></i>
               <input
                 type="text"
                 placeholder="Username"
@@ -116,7 +117,7 @@ function LoginSignupPage() {
               />
             </div>
             <div className="input-field">
-              <i className="fas fa-lock"></i>
+              <i className="fa fa-lock"></i>
               <input
                 type="password"
                 placeholder="Password"
@@ -144,7 +145,7 @@ function LoginSignupPage() {
           <form action="#" className="sign-up-form" onSubmit={handleSignUp}>
             <h2 className="title">Register</h2>
             <div className="input-field">
-              <i className="fas fa-user"></i>
+              <i className="fa fa-user"></i>
               <input
                 type="text"
                 placeholder="Username"
@@ -153,7 +154,7 @@ function LoginSignupPage() {
               />
             </div>
             <div className="input-field">
-              <i className="fas fa-envelope"></i>
+              <i className="fa fa-envelope"></i>
               <input
                 type="email"
                 placeholder="Email"
@@ -162,7 +163,7 @@ function LoginSignupPage() {
               />
             </div>
             <div className="input-field">
-              <i className="fas fa-lock"></i>
+              <i className="fa fa-lock"></i>
               <input
                 type="password"
                 placeholder="Password"

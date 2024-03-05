@@ -9,7 +9,7 @@ const UserDetails = () => {
   const [generalUser, setGeneralUser] = useState(false);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/userData", {
+    fetch("http://localhost:5000/api/user/userData", {
       method: "POST",
       crossDomain: true,
       headers: {
