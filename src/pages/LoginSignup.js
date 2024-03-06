@@ -93,16 +93,20 @@ function LoginSignupPage() {
             icon: "success",
             title: "Success",
             text: "Login Successful.",
+            confirmButtonText: "OK",
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.localStorage.setItem("token", data.data);
+              window.localStorage.setItem("loggedIn", true);
+              window.location.href = "./userDetails";
+            }
           });
-          window.localStorage.setItem("token", data.data);
-          window.localStorage.setItem("loggedIn", true);
-          window.location.href = "./userDetails";
         }
       });
   };
 
   return (
-    <div className={`container ${isSignUpMode ? "sign-up-mode" : ""}`}>
+    <div className={`containerone ${isSignUpMode ? "sign-up-mode" : ""}`}>
       <div className="forms-container">
         <div className="signin-signup">
           <form action="#" className="sign-in-form" onSubmit={handleSignIn}>
