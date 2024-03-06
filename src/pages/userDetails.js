@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
-import UserHome from "./userHome";
+import GenaralHome from "./GeneralHome";
 import AdminHome from "./AdminHome";
-import FuelStationHome from "./FuelStationHome";
+import Swal from "sweetalert2";
 
 const UserDetails = () => {
   const [userData, setUserData] = useState("");
   const [admin, setAdmin] = useState(false);
-  const [generalUser, setGeneralUser] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [tokenExpired, setTokenExpired] = useState(false); // State for token expiration
 
   useEffect(() => {
     fetch("http://localhost:5000/api/user/userData", {
@@ -26,32 +27,43 @@ const UserDetails = () => {
         console.log(data, "userData");
         if (data.data.userType === "Admin") {
           setAdmin(true);
-        }
-        if (data.data.userType === "General User") {
-          setGeneralUser(true);
-        }
+        }        
         setUserData(data.data);
+        setLoading(false);
         if (data.data === "token expired") {
-          alert("Token expired. Please log in again.");
-          window.localStorage.clear();
-          window.location.href = "./sign-in";
+          setTokenExpired(true); // Set tokenExpired state to true
         }
       });
   }, []);
 
-  const logOut = () => {
-    window.localStorage.clear();
-    window.location.href = "./sign-in";
-  };
+  // Render alert message if token is expired
+  if (tokenExpired) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Token Expired',
+      text: 'Token expired. Please log in again.',
+      confirmButtonText: 'OK'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.localStorage.clear();
+        window.location.href = "./loginSignup";
+      }
+    });
+    return null; // Return null to prevent rendering anything else
+  }
 
+  // Render loading state while data is being fetched
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  // Render based on user type after data is fetched
   return (
     <div>
       {admin ? (
         <AdminHome />
-      ) : generalUser ? (
-        <FuelStationHome />
       ) : (
-        <UserHome />
+        <GenaralHome />
       )}
     </div>
   );
