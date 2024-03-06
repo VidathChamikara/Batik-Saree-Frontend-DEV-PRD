@@ -190,7 +190,7 @@ nav {
 
 @media (width < 900px) {
   .link a:not(.nav__btn) {
-    display: none;
+    display: block;
   }
 
   .homecontainer {
