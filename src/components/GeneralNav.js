@@ -19,10 +19,8 @@ function GenaralNav() {
   };
 
   const [dropdownOpen, setOpen] = useState(false);
-  const [modalOpen, setModalOpen] = useState(false);
 
   const toggle = () => setOpen(!dropdownOpen);
-  const toggleModal = () => setModalOpen(!modalOpen);
 
   const logOut = () => {
     window.localStorage.clear();
@@ -69,7 +67,7 @@ function GenaralNav() {
             <DropdownMenu>
               <DropdownItem>My profile</DropdownItem>
               <DropdownItem>Setting</DropdownItem>
-              <DropdownItem>Logout</DropdownItem>
+              <DropdownItem onClick={logOut}>Logout</DropdownItem>
             </DropdownMenu>
           </ButtonDropdown>
         </ButtonGroup>
