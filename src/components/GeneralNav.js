@@ -8,8 +8,6 @@ import {
   DropdownMenu,
   DropdownItem,
   DropdownToggle,
-  Modal,
-  ModalBody,
 } from "reactstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -53,23 +51,24 @@ function GenaralNav() {
         <li className="link">
           <a href="#contact">Contact Us</a>
         </li>
-        <li className="link">
-          <button onClick={logOut} className="nav__btn">
-            Logout
-          </button>
-        </li>
+
         <ButtonGroup>
           <ButtonDropdown
             className="py-0"
             isOpen={dropdownOpen}
             toggle={toggle}
           >
-            <DropdownToggle caret>Click me</DropdownToggle>
+            <DropdownToggle caret>
+              <i
+                className="fa fa-user-circle-o"
+                aria-hidden="true"
+                style={{ fontSize: "32px" }}
+              ></i>{" "}
+              {/* Icon instead of text */}
+            </DropdownToggle>
             <DropdownMenu>
               <DropdownItem onClick={toggleModal}>Show Modal</DropdownItem>
-              <Modal isOpen={modalOpen} toggle={toggleModal} size="lg">
-                <ModalBody></ModalBody>
-              </Modal>
+              
             </DropdownMenu>
           </ButtonDropdown>
         </ButtonGroup>
