@@ -44,10 +44,13 @@ function GenaralNav() {
           <a href="#home">Home</a>
         </li>
         <li className="link">
-          <a href="#about">About Us</a>
+          <a href="#about">Kandyan</a>
         </li>
         <li className="link">
-          <a href="#contact">Contact Us</a>
+          <a href="#contact">Indian</a>
+        </li>
+        <li className="link">
+          <a href="#contact">Batik</a>
         </li>
 
         <ButtonGroup>
@@ -56,11 +59,20 @@ function GenaralNav() {
             isOpen={dropdownOpen}
             toggle={toggle}
           >
-            <DropdownToggle caret>
+            <DropdownToggle
+              caret
+              style={{
+                padding: "0.25rem 0.5rem",
+                lineHeight: "1.5",
+                backgroundColor: "white", // Set background color to white
+                borderColor: "white", // Set border color to white
+                color: "#5c48ee",
+              }}
+            >
               <i
                 className="fa fa-user-circle-o"
                 aria-hidden="true"
-                style={{ fontSize: "32px" }}
+                style={{ fontSize: "35px", color: "#5c48ee" }} // Set icon color to black
               ></i>{" "}
               {/* Icon instead of text */}
             </DropdownToggle>
