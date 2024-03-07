@@ -36,10 +36,15 @@ function GenaralNav() {
           <a href="#contact">Contact Us</a>
         </li>
         <li className="link">
-          <button onClick={logOut}  className="nav__btn">
+          <button onClick={logOut} className="nav__btn">
             Logout
           </button>
         </li>
+        <i
+          class="fa fa-user-circle-o"
+          aria-hidden="true"
+          style={{ fontSize: "32px" }}
+        ></i>
       </ul>
     </nav>
   );
