@@ -41,16 +41,24 @@ function GenaralNav() {
       </div>
       <ul className={`nav__links ${menuActive ? "active" : ""}`}>
         <li className="link">
-          <a href="#home">Home</a>
+          <a href="#home" style={{ fontSize: "18px" }}>
+            Home
+          </a>
         </li>
         <li className="link">
-          <a href="#about">Kandyan</a>
+          <a href="#about" style={{ fontSize: "18px" }}>
+            Kandyan
+          </a>
         </li>
         <li className="link">
-          <a href="#contact">Indian</a>
+          <a href="#contact" style={{ fontSize: "18px" }}>
+            Indian
+          </a>
         </li>
         <li className="link">
-          <a href="#contact">Batik</a>
+          <a href="#contact" style={{ fontSize: "18px" }}>
+            Batik
+          </a>
         </li>
 
         <ButtonGroup>
@@ -77,8 +85,6 @@ function GenaralNav() {
               {/* Icon instead of text */}
             </DropdownToggle>
             <DropdownMenu>
-              <DropdownItem>My profile</DropdownItem>
-              <DropdownItem>Setting</DropdownItem>
               <DropdownItem onClick={logOut}>Logout</DropdownItem>
             </DropdownMenu>
           </ButtonDropdown>
