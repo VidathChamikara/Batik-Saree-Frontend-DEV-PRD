@@ -2,12 +2,30 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../css/landing.css";
 
+import {
+  ButtonDropdown,
+  ButtonGroup,
+  DropdownMenu,
+  DropdownItem,
+  DropdownToggle,
+  Modal,
+  ModalBody,
+} from "reactstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+
 function GenaralNav() {
   const [menuActive, setMenuActive] = useState(false);
 
   const toggleMenu = () => {
     setMenuActive(!menuActive);
   };
+
+  const [dropdownOpen, setOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const toggle = () => setOpen(!dropdownOpen);
+  const toggleModal = () => setModalOpen(!modalOpen);
+
   const logOut = () => {
     window.localStorage.clear();
     window.location.href = "./loginSignup";
@@ -40,11 +58,21 @@ function GenaralNav() {
             Logout
           </button>
         </li>
-        <i
-          class="fa fa-user-circle-o"
-          aria-hidden="true"
-          style={{ fontSize: "32px" }}
-        ></i>
+        <ButtonGroup>
+          <ButtonDropdown
+            className="py-0"
+            isOpen={dropdownOpen}
+            toggle={toggle}
+          >
+            <DropdownToggle caret>Click me</DropdownToggle>
+            <DropdownMenu>
+              <DropdownItem onClick={toggleModal}>Show Modal</DropdownItem>
+              <Modal isOpen={modalOpen} toggle={toggleModal} size="lg">
+                <ModalBody></ModalBody>
+              </Modal>
+            </DropdownMenu>
+          </ButtonDropdown>
+        </ButtonGroup>
       </ul>
     </nav>
   );
