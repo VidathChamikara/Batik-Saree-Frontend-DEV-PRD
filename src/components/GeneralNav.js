@@ -67,8 +67,9 @@ function GenaralNav() {
               {/* Icon instead of text */}
             </DropdownToggle>
             <DropdownMenu>
-              <DropdownItem onClick={toggleModal}>Show Modal</DropdownItem>
-              
+              <DropdownItem>My profile</DropdownItem>
+              <DropdownItem>Setting</DropdownItem>
+              <DropdownItem>Logout</DropdownItem>
             </DropdownMenu>
           </ButtonDropdown>
         </ButtonGroup>
