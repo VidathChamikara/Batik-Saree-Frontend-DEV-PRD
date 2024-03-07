@@ -8,7 +8,6 @@ import contact1 from "../images/contact1.avif";
 import contact2 from "../images/contact2.jpg";
 import Swal from "sweetalert2";
 
-
 function Landing() {
   const [menuActive, setMenuActive] = useState(false);
   const [name, SetName] = useState("");
@@ -177,7 +176,7 @@ function Landing() {
                     </label>
                   </div>
 
-                  <div className="form-field col-lg-12">
+                  <div className="form-field col-lg-6">
                     <input
                       id="message"
                       className="input-text"
@@ -191,7 +190,7 @@ function Landing() {
                     </label>
                   </div>
 
-                  <div className="form-field col-lg-12">
+                  <div className="form-field col-lg-6">
                     <input
                       className="submit-btn"
                       type="submit"
@@ -233,7 +232,7 @@ function Landing() {
           <div>
             <i className="fa fa-map-marker"></i>
             <p>
-              <span>Maradana</span>  Colombo
+              <span>Maradana</span> Colombo
             </p>
           </div>
           <div>
