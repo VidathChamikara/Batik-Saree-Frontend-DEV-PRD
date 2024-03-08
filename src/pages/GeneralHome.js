@@ -1,5 +1,6 @@
 import React from "react";
 import GenaralNav from "../components/GeneralNav";
+import welcome from "../images/welcome.png";
 
 function GenaralHome({ userName }) {
   return (
@@ -20,6 +21,9 @@ function GenaralHome({ userName }) {
             journey to bring your unique vision to life. Let's begin weaving
             your masterpiece together!
           </p>
+        </div>
+        <div className="image__welcome">
+        <img src={welcome} alt="welcome" />
         </div>
       </section>
     </div>

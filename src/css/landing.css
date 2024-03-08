@@ -152,9 +152,22 @@ nav {
   place-content: center;
 }
 
+.image__welcome {
+  position: relative;
+  display: grid; 
+  place-content: center;
+}
+
 .image__container img {
   width: 100%;
   max-width: 300px;
+  margin: auto;
+  border-radius: 10px;
+}
+
+.image__welcome img {
+  width: 100%;
+  max-width: 550px;
   margin: auto;
   border-radius: 10px;
 }

@@ -1,5 +1,6 @@
 import React from "react";
 import GenaralNav from "../components/GeneralNav";
+import welcome from "../images/welcome.png";
 
 function AdminHome() {
   return (
@@ -21,6 +22,9 @@ function AdminHome() {
             creativity and take control of your Batik journey. Let's craft
             unforgettable creations together!
           </p>
+        </div>
+        <div className="image__welcome">
+        <img src={welcome} alt="welcome" />
         </div>
       </section>
     </div>
