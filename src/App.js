@@ -38,7 +38,7 @@ function App() {
           path="/loginSignup"
           element={
             isLoggedIn === "true" ? (
-              <Navigate to="/userDetails" replace />
+              <Navigate to="/Home" replace />
             ) : (
               <LoginSignup />
             )
@@ -48,7 +48,7 @@ function App() {
         {/* Protected routes */}
         <Route path="/generalHome" element={<PrivateRoute element={<GeneralHome />} />} />
         <Route path="/adminHome" element={<PrivateRoute element={<AdminHome />} />} />
-        <Route path="/userDetails" element={<PrivateRoute element={<UserDetails />} />} />
+        <Route path="/Home" element={<PrivateRoute element={<UserDetails />} />} />
 
         {/* Public routes */}
         <Route path="/shirt" element={<ShirtDesigner />} />

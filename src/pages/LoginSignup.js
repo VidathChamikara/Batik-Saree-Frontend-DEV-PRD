@@ -98,7 +98,7 @@ function LoginSignupPage() {
             if (result.isConfirmed) {
               window.localStorage.setItem("token", data.data);
               window.localStorage.setItem("loggedIn", true);
-              window.location.href = "./userDetails";
+              window.location.href = "./Home";
             }
           });
         }
