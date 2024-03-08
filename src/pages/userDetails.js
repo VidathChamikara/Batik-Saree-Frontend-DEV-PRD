@@ -25,7 +25,8 @@ const UserDetails = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data, "userData");
-        if (data.data.userType === "Admin") {
+        window.localStorage.setItem("userType", data.data.userType);
+        if (data.data.userType === "Admin") {          
           setAdmin(true);
         }        
         setUserData(data.data);
