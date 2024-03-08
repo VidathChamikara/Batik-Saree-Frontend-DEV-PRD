@@ -1,14 +1,14 @@
 import React from "react";
 import GenaralNav from "../components/GeneralNav";
 
-function GenaralHome() {
+function GenaralHome({ userName }) {
   return (
     <div>
       <GenaralNav />
       <section className="homecontainer">
         <div className="content__homecontainer">
           <h1>
-            Hey Vidath !!!
+            Hey {userName} !!!
             <br />
             <span className="heading__1">Welcome to our</span>
             <br />

@@ -63,7 +63,7 @@ const UserDetails = () => {
       {admin ? (
         <AdminHome />
       ) : (
-        <GenaralHome />
+        <GenaralHome userName={userData.username} />
       )}
     </div>
   );
