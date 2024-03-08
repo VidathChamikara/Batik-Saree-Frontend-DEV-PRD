@@ -11,6 +11,7 @@ import LoginSignup from "./pages/LoginSignup";
 import UserDetails from "./pages/userDetails";
 import GeneralHome from "./pages/GeneralHome";
 import AdminHome from "./pages/AdminHome";
+import Kandyan from "./pages/Kandyan";
 
 // Define PrivateRoute component for protecting routes
 const PrivateRoute = ({ element, userType, ...rest }) => {
@@ -59,6 +60,7 @@ function App() {
         <Route path="/Home" element={<PrivateRoute element={<UserDetails />} />} />
 
         {/* Public routes */}
+        <Route path="/kandyan" element={<Kandyan />} />
         <Route path="/shirt" element={<ShirtDesigner />} />
         <Route path="/generalNav" element={<GeneralNav />} />
       </Routes>

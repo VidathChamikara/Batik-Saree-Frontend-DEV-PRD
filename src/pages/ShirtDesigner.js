@@ -1,4 +1,3 @@
-// ShirtDesigner.js
 import React, { useEffect, useState } from 'react';
 import shirtImage from "../images/shirt.png";
 import flowerImage from "../images/flower1.png";
@@ -8,6 +7,8 @@ const ShirtDesigner = () => {
   const [selectedColor, setSelectedColor] = useState('#00ff00');
   const [flowerColor, setFlowerColor] = useState('#ff00ff');
   const [isFlowerAdded, setIsFlowerAdded] = useState(false);
+  const [canvasWidth] = useState(300); // Default width
+  const [canvasHeight] = useState(300); // Default height
   const canvasRef = React.createRef();
 
   useEffect(() => {
@@ -16,8 +17,8 @@ const ShirtDesigner = () => {
     const img = new Image();
 
     img.onload = () => {
-      canvas.width = img.width >> 1;
-      canvas.height = img.height >> 1;
+      canvas.width = canvasWidth;
+      canvas.height = canvasHeight;
       render(ctx, img);
     };
 
@@ -43,7 +44,7 @@ const ShirtDesigner = () => {
     };
 
     render(ctx, img);
-  }, [canvasRef, selectedColor, isFlowerAdded]);
+  }, [canvasRef, selectedColor, isFlowerAdded, canvasWidth, canvasHeight]);
 
   useEffect(() => {
     if (isFlowerAdded) {
@@ -77,7 +78,6 @@ const ShirtDesigner = () => {
   
     flowerImg.src = flowerImage;
   };
-  
 
   const changeColor = (color) => {
     setSelectedColor(color);
@@ -91,9 +91,12 @@ const ShirtDesigner = () => {
     setIsFlowerAdded(true);
   };
 
+  
+
   return (
     <div>
-       <canvas ref={canvasRef}></canvas>
+     
+      <canvas ref={canvasRef}></canvas>
       <label>
         Selected Color For Shirt: <span>{selectedColor}</span>
       </label>
@@ -101,7 +104,6 @@ const ShirtDesigner = () => {
         Selected Color For Flower: <span>{flowerColor}</span>
       </label>
       <div>
-        
         <div
           className="colorButton"
           style={{ backgroundColor: '#00ff00' }}
@@ -124,10 +126,8 @@ const ShirtDesigner = () => {
           style={{ backgroundColor: '#00ffff' }}
           onClick={() => changeFlowerColor('#00ffff')}
         ></div>
-        
       </div>
       <button onClick={addFlower}>Add Flower</button>
-     
     </div>
   );
 };
