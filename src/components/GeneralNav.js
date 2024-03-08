@@ -41,8 +41,9 @@ function GenaralNav() {
       </div>
       <ul className={`nav__links ${menuActive ? "active" : ""}`}>
         <li className="link">
-          <Link to="/loginSignup" style={{ fontSize: "18px" }}>Home</Link>
-        
+          <Link to="/loginSignup" style={{ fontSize: "18px" }}>
+            Home
+          </Link>
         </li>
         <li className="link">
           <a href="#about" style={{ fontSize: "18px" }}>

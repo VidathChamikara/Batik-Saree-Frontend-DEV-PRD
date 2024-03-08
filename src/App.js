@@ -13,12 +13,20 @@ import GeneralHome from "./pages/GeneralHome";
 import AdminHome from "./pages/AdminHome";
 
 // Define PrivateRoute component for protecting routes
-const PrivateRoute = ({ element, ...rest }) => {
+const PrivateRoute = ({ element, userType, ...rest }) => {
   const isLoggedIn = window.localStorage.getItem("loggedIn");
-  
+  const storedUserType = window.localStorage.getItem("userType");
+
   // Redirect to login page if not logged in
   if (isLoggedIn !== "true") {
     return <Navigate to="/loginSignup" />;
+  }
+
+  // Check user type
+  if (userType === "general" && storedUserType !== "General User") {
+    return <Navigate to="/generalHome" />;
+  } else if (userType === "admin" && storedUserType !== "Admin") {
+    return <Navigate to="/adminHome" />;
   }
 
   // Otherwise, render the specified element
@@ -46,8 +54,8 @@ function App() {
         />
 
         {/* Protected routes */}
-        <Route path="/generalHome" element={<PrivateRoute element={<GeneralHome />} />} />
-        <Route path="/adminHome" element={<PrivateRoute element={<AdminHome />} />} />
+        <Route path="/generalHome" element={<PrivateRoute element={<GeneralHome />} userType="general" />} />
+        <Route path="/adminHome" element={<PrivateRoute element={<AdminHome />} userType="admin" />} />
         <Route path="/Home" element={<PrivateRoute element={<UserDetails />} />} />
 
         {/* Public routes */}
