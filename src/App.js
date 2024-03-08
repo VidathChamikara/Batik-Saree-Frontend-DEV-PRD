@@ -1,9 +1,14 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
 
 //Components
 import GeneralNav from "./components/GeneralNav";
-import ShirtDesigner from "./pages/ShirtDesigner";
+import SareeDesigner from "./pages/SareeDesigner";
 
 //Pages
 import Landing from "./pages/Landing";
@@ -55,13 +60,24 @@ function App() {
         />
 
         {/* Protected routes */}
-        <Route path="/generalHome" element={<PrivateRoute element={<GeneralHome />} userType="general" />} />
-        <Route path="/adminHome" element={<PrivateRoute element={<AdminHome />} userType="admin" />} />
-        <Route path="/Home" element={<PrivateRoute element={<UserDetails />} />} />
+        <Route
+          path="/generalHome"
+          element={
+            <PrivateRoute element={<GeneralHome />} userType="general" />
+          }
+        />
+        <Route
+          path="/adminHome"
+          element={<PrivateRoute element={<AdminHome />} userType="admin" />}
+        />
+        <Route
+          path="/Home"
+          element={<PrivateRoute element={<UserDetails />} />}
+        />
 
         {/* Public routes */}
         <Route path="/kandyan" element={<Kandyan />} />
-        <Route path="/shirt" element={<ShirtDesigner />} />
+        <Route path="/saree" element={<SareeDesigner />} />
         <Route path="/generalNav" element={<GeneralNav />} />
       </Routes>
     </Router>

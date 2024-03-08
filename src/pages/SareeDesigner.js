@@ -4,7 +4,7 @@ import flowerImage from "../images/flower1.png";
 import base from "../images/base.jpeg";
 import "../css/colorButton.css";
 
-const ShirtDesigner = () => {
+const SareeDesigner = () => {
   const [selectedColor, setSelectedColor] = useState("transparent"); // Initially transparent
   const [flowerColor, setFlowerColor] = useState("#ff00ff");
   const [isFlowerAdded, setIsFlowerAdded] = useState(false);
@@ -137,4 +137,4 @@ const ShirtDesigner = () => {
   );
 };
 
-export default ShirtDesigner;
+export default SareeDesigner;
