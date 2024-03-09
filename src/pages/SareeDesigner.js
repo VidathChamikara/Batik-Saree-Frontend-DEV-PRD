@@ -2,16 +2,15 @@ import React, { useEffect, useState } from "react";
 import shirtImage from "../images/shirt.png";
 import flowerImage from "../images/flower1.png";
 import base from "../images/base.jpeg";
+import layer1 from "../images/layer1.jpeg";
 import "../css/colorButton.css";
 
 const SareeDesigner = () => {
   const [selectedColor, setSelectedColor] = useState("transparent"); // Initially transparent
-  const [flowerColor, setFlowerColor] = useState("#ff00ff");
+  const [flowerColor, setFlowerColor] = useState("transparent");
   const [isFlowerAdded, setIsFlowerAdded] = useState(false);
   const canvasWidth = 550; // Hardcoded width
   const canvasHeight = 200; // Hardcoded height
-  const flowerCanvasWidth = 300; // Hardcoded flower width
-  const flowerCanvasHeight = 300; // Hardcoded flower height
   const canvasRef = React.createRef();
 
   useEffect(() => {
@@ -42,48 +41,42 @@ const SareeDesigner = () => {
       ctx.globalCompositeOperation = "source-over";
 
       if (isFlowerAdded) {
-        addFlowerToCanvas();
+        addFlowerToCanvas(canvas.width, canvas.height); // Pass canvas dimensions
       }
     };
 
     render(ctx, img);
   }, [canvasRef, selectedColor, isFlowerAdded, canvasWidth, canvasHeight]);
 
-  useEffect(() => {
-    if (isFlowerAdded) {
-      addFlowerToCanvas();
-    }
-  }, [canvasRef, flowerColor, isFlowerAdded]);
-
-  const addFlowerToCanvas = () => {
+  const addFlowerToCanvas = (canvasWidth, canvasHeight) => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
     const flowerImg = new Image();
 
     flowerImg.onload = () => {
       const flowerCanvas = document.createElement("canvas");
-      flowerCanvas.width = flowerCanvasWidth;
-      flowerCanvas.height = flowerCanvasHeight;
+      flowerCanvas.width = canvasWidth; // Match main canvas width
+      flowerCanvas.height = canvasHeight; // Match main canvas height
       const flowerCtx = flowerCanvas.getContext("2d");
 
       // Draw flower image with applied color on the off-screen canvas
-      flowerCtx.drawImage(flowerImg, 0, 0);
+      flowerCtx.drawImage(flowerImg, 0, 0, canvasWidth, canvasHeight);
       flowerCtx.globalCompositeOperation = "source-in";
       flowerCtx.fillStyle = flowerColor;
-      flowerCtx.fillRect(0, 0, flowerCanvas.width, flowerCanvas.height);
+      flowerCtx.fillRect(0, 0, canvasWidth, canvasHeight);
 
       // Composite the flower canvas onto the main canvas
       ctx.drawImage(
         flowerCanvas,
-        (canvas.width - flowerCanvas.width) / 2,
-        (canvas.height - flowerCanvas.height) / 2
+        0, // Adjust the position if necessary
+        0 // Adjust the position if necessary
       );
 
       // Reset comp. mode to default
       flowerCtx.globalCompositeOperation = "source-over";
     };
 
-    flowerImg.src = flowerImage;
+    flowerImg.src = shirtImage;
   };
 
   const changeColor = (color) => {
@@ -100,8 +93,9 @@ const SareeDesigner = () => {
 
   return (
     <div>
-      <canvas ref={canvasRef}></canvas>
-
+      <div style={{ border: "2px solid black", padding: "10px" }}>
+        <canvas ref={canvasRef}></canvas>
+      </div>
       <div>
         <label>
           Selected Color For Base Layer: <span>{selectedColor}</span>
