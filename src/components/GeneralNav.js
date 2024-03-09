@@ -57,6 +57,11 @@ function GenaralNav() {
         </li>
         <li className="link">
           <a href="#contact" style={{ fontSize: "18px" }}>
+            Batik
+          </a>
+        </li>
+        <li className="link">
+          <a href="#contact" style={{ fontSize: "18px" }}>
             More
           </a>
         </li>

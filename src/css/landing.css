@@ -166,6 +166,12 @@ nav {
   place-content: center;
 }
 
+.image__model {
+  position: relative;
+  display: grid; 
+  place-content: center;
+}
+
 .image__container img {
   width: 100%;
   max-width: 300px;
@@ -176,6 +182,13 @@ nav {
 .image__welcome img {
   width: 100%;
   max-width: 550px;
+  margin: auto;
+  border-radius: 10px;
+}
+
+.image__model img {
+  width: 100%;
+  max-width: 300px;
   margin: auto;
   border-radius: 10px;
 }
