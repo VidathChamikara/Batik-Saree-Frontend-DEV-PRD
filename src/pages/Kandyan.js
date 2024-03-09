@@ -9,7 +9,7 @@ function Kandyan() {
       <section className="homecontainer">
         <div className="image__welcome"></div>
         <div className="content__homecontainer">
-          <h2>Model Number</h2>
+          <h3>Model Number</h3>
           <SareeDesigner />
         </div>
       </section>

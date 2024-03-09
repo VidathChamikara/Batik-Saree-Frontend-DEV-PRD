@@ -96,6 +96,14 @@ nav {
   margin-bottom: 1rem;
 }
 
+.content__homecontainer h3 {
+  font-size: 2rem;
+  font-weight: 400;
+  line-height: 3.5rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
 .heading__1 {
   font-weight: 700;
 }
