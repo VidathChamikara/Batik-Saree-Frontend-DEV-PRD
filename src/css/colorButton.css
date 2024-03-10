@@ -1,7 +1,23 @@
 /* Add this CSS to your stylesheet */
+.colorButtonContainer {
+  display: flex;
+}
+
 .colorButton {
-    width: 30px;
-    height: 30px;
-    margin-right: 5px;
-    cursor: pointer;
-  }
+  width: 30px;
+  height: 30px;
+  margin-right: 5px;
+  cursor: pointer;
+  border: 1.6px solid #000; /* Add border around the button */
+  border-radius: 50%; /* Make the button round */
+}
+
+.layerCheckboxLabel {
+  display: inline-flex;
+  align-items: center;
+}
+
+#layerCheckbox {
+  width: auto;
+  margin-right: 5px; /* Adjust as needed */
+}

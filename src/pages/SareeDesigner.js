@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
-import shirtImage from "../images/shirt.png";
-import flowerImage from "../images/flower1.png";
 import base from "../images/base.jpeg";
 import layer1 from "../images/layer2.png";
 import layer2 from "../images/layer3.png";
 import "../css/colorButton.css";
+import Button from "react-bootstrap/Button";
 
 const SareeDesigner = () => {
   const [selectedColor, setSelectedColor] = useState("transparent"); // Initially transparent
   const [flowerColor, setFlowerColor] = useState("red");
   const [isFlowerAdded, setIsFlowerAdded] = useState(false);
+  const [addLayer, setAddLayer] = useState(false);
   const canvasWidth = 550; // Hardcoded width
   const canvasHeight = 200; // Hardcoded height
   const canvasRef = React.createRef();
@@ -92,6 +92,19 @@ const SareeDesigner = () => {
     setIsFlowerAdded(true);
   };
 
+  const removeFlower = () => {
+    setIsFlowerAdded(false);
+  };
+
+  const handleToggleLayer = () => {
+    setAddLayer(!addLayer);
+    if (addLayer) {
+      removeFlower(); // Call removeFlower function when removing layer
+    } else {
+      addFlower(); // Call addFlower function when adding layer
+    }
+  };
+
   return (
     <div>
       <div style={{ border: "2px solid black", padding: "10px" }}>
@@ -99,35 +112,47 @@ const SareeDesigner = () => {
       </div>
       <div>
         <label>
-          Selected Color For Base Layer: <span>{selectedColor}</span>
+          Layer 1: <span>{selectedColor}</span>
         </label>
-        <div
-          className="colorButton"
-          style={{ backgroundColor: "#00ff00" }}
-          onClick={() => changeColor("#00ff00")}
-        ></div>
-        <div
-          className="colorButton"
-          style={{ backgroundColor: "#0000ff" }}
-          onClick={() => changeColor("#0000ff")}
-        ></div>
+        <div className="colorButtonContainer">
+          <div
+            className="colorButton"
+            style={{ backgroundColor: "#00ff00" }}
+            onClick={() => changeColor("#00ff00")}
+          ></div>
+          <div
+            className="colorButton"
+            style={{ backgroundColor: "#0000ff" }}
+            onClick={() => changeColor("#0000ff")}
+          ></div>
+        </div>
       </div>
       <div>
         <label>
-          Selected Color For First Layer: <span>{flowerColor}</span>
+          Layer 2: <span>{flowerColor}</span>
         </label>
-        <div
-          className="colorButton"
-          style={{ backgroundColor: "#ff00ff" }}
-          onClick={() => changeFlowerColor("#ff00ff")}
-        ></div>
-        <div
-          className="colorButton"
-          style={{ backgroundColor: "#00ffff" }}
-          onClick={() => changeFlowerColor("#00ffff")}
-        ></div>
+        <div className="colorButtonContainer">
+          <div
+            className="colorButton"
+            style={{ backgroundColor: "#ff00ff" }}
+            onClick={() => changeFlowerColor("#ff00ff")}
+          ></div>
+          <div
+            className="colorButton"
+            style={{ backgroundColor: "#00ffff" }}
+            onClick={() => changeFlowerColor("#00ffff")}
+          ></div>
+        </div>
       </div>
-      <button onClick={addFlower}>Add Flower</button>
+      <label className="layerCheckboxLabel" htmlFor="layerCheckbox">
+        <input
+          type="checkbox"
+          id="layerCheckbox"
+          checked={addLayer}
+          onChange={handleToggleLayer}
+        />
+        {addLayer ? "Layer 2 Added" : "Add Layer 2"}
+      </label>
     </div>
   );
 };
