@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import base from "../images/base.jpeg";
-import layer1 from "../images/layer2.png";
-import layer2 from "../images/layer3.png";
+import layer1 from "../images/base.jpeg";
+import layer2 from "../images/layer2.png";
+import layer3 from "../images/layer3.png";
 import "../css/colorButton.css";
 import { Table, Form } from "react-bootstrap";
 
@@ -10,6 +10,11 @@ const SareeDesigner = () => {
   const [layer2Color, setLayer2Color] = useState("red");
   const [is2LayerAdded, setIs2LayerAdded] = useState(false);
   const [add2Layer, setAdd2Layer] = useState(false);
+
+  const [layer3Color, setLayer3Color] = useState("green");
+  const [is3LayerAdded, setIs3LayerAdded] = useState(false);
+  const [add3Layer, setAdd3Layer] = useState(false);
+
   const canvasWidth = 550; // Hardcoded width
   const canvasHeight = 180; // Hardcoded height
   const canvasRef = React.createRef();
@@ -25,7 +30,7 @@ const SareeDesigner = () => {
       render(ctx1, img1);
     };
 
-    img1.src = base;
+    img1.src = layer1;
 
     const render = (ctx1, img) => {
       ctx1.clearRect(0, 0, canvas1.width, canvas1.height);
@@ -42,14 +47,25 @@ const SareeDesigner = () => {
       ctx1.globalCompositeOperation = "source-over";
 
       if (is2LayerAdded) {
-        addFLayer2ToCanvas(canvas1.width, canvas1.height); // Pass canvas dimensions
+        addLayer2ToCanvas(canvas1.width, canvas1.height); // Pass canvas dimensions
+      }
+
+      if (is3LayerAdded) {
+        addLayer3ToCanvas(canvas1.width, canvas1.height); // Pass canvas dimensions
       }
     };
 
     render(ctx1, img1);
-  }, [canvasRef, selectedLayer1Color, is2LayerAdded, canvasWidth, canvasHeight]);
+  }, [
+    canvasRef,
+    selectedLayer1Color,
+    is2LayerAdded,
+    is3LayerAdded,
+    canvasWidth,
+    canvasHeight,
+  ]);
 
-  const addFLayer2ToCanvas = (canvasWidth, canvasHeight) => {
+  const addLayer2ToCanvas = (canvasWidth, canvasHeight) => {
     const canvas1 = canvasRef.current;
     const ctx1 = canvas1.getContext("2d");
     const img2 = new Image();
@@ -77,7 +93,38 @@ const SareeDesigner = () => {
       Ctx2.globalCompositeOperation = "source-over";
     };
 
-    img2.src = layer1;
+    img2.src = layer2;
+  };
+
+  const addLayer3ToCanvas = (canvasWidth, canvasHeight) => {
+    const canvas1 = canvasRef.current;
+    const ctx1 = canvas1.getContext("2d");
+    const img3 = new Image();
+
+    img3.onload = () => {
+      const Canvas3 = document.createElement("canvas");
+      Canvas3.width = canvasWidth; // Match main canvas width
+      Canvas3.height = canvasHeight; // Match main canvas height
+      const Ctx3 = Canvas3.getContext("2d");
+
+      // Draw flower image with applied color on the off-screen canvas
+      Ctx3.drawImage(img3, 0, 0, canvasWidth, canvasHeight);
+      Ctx3.globalCompositeOperation = "source-in";
+      Ctx3.fillStyle = layer3Color;
+      Ctx3.fillRect(0, 0, canvasWidth, canvasHeight);
+
+      // Composite the flower canvas onto the main canvas
+      ctx1.drawImage(
+        Canvas3,
+        0, // Adjust the position if necessary
+        0 // Adjust the position if necessary
+      );
+
+      // Reset comp. mode to default
+      Ctx3.globalCompositeOperation = "source-over";
+    };
+
+    img3.src = layer3;
   };
 
   const changeLayer1Color = (color) => {
@@ -88,12 +135,24 @@ const SareeDesigner = () => {
     setLayer2Color(color);
   };
 
+  const changeLayer3Color = (color) => {
+    setLayer3Color(color);
+  };
+
   const addLayer2 = () => {
     setIs2LayerAdded(true);
   };
 
+  const addLayer3 = () => {
+    setIs3LayerAdded(true);
+  };
+
   const removeLayer2 = () => {
     setIs2LayerAdded(false);
+  };
+
+  const removeLayer3 = () => {
+    setIs3LayerAdded(false);
   };
 
   const handleToggle2Layer = () => {
@@ -102,6 +161,15 @@ const SareeDesigner = () => {
       removeLayer2(); // Call removeFlower function when removing layer
     } else {
       addLayer2(); // Call addFlower function when adding layer
+    }
+  };
+
+  const handleToggle3Layer = () => {
+    setAdd3Layer(!add3Layer);
+    if (add3Layer) {
+      removeLayer3(); // Call removeFlower function when removing layer
+    } else {
+      addLayer3(); // Call addFlower function when adding layer
     }
   };
 
@@ -159,6 +227,32 @@ const SareeDesigner = () => {
                 id="layerCheckbox"
                 checked={add2Layer}
                 onChange={handleToggle2Layer}
+                label=""
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>Layer 3</td>
+            <td>
+              <div className="colorButtonContainer">
+                <div
+                  className="colorButton"
+                  style={{ backgroundColor: "#ff00ff" }}
+                  onClick={() => changeLayer3Color("#ff00ff")}
+                ></div>
+                <div
+                  className="colorButton"
+                  style={{ backgroundColor: "#00ffff" }}
+                  onClick={() => changeLayer3Color("#00ffff")}
+                ></div>
+              </div>
+            </td>
+            <td>
+              <Form.Check
+                type="checkbox"
+                id="layerCheckbox"
+                checked={add3Layer}
+                onChange={handleToggle3Layer}
                 label=""
               />
             </td>
