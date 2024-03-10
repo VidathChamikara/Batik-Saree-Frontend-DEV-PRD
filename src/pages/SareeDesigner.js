@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 import shirtImage from "../images/shirt.png";
 import flowerImage from "../images/flower1.png";
 import base from "../images/base.jpeg";
-import layer1 from "../images/layer1.jpeg";
+import layer1 from "../images/layer2.png";
+import layer2 from "../images/layer3.png";
 import "../css/colorButton.css";
 
 const SareeDesigner = () => {
   const [selectedColor, setSelectedColor] = useState("transparent"); // Initially transparent
-  const [flowerColor, setFlowerColor] = useState("transparent");
+  const [flowerColor, setFlowerColor] = useState("red");
   const [isFlowerAdded, setIsFlowerAdded] = useState(false);
   const canvasWidth = 550; // Hardcoded width
   const canvasHeight = 200; // Hardcoded height
@@ -76,7 +77,7 @@ const SareeDesigner = () => {
       flowerCtx.globalCompositeOperation = "source-over";
     };
 
-    flowerImg.src = shirtImage;
+    flowerImg.src = layer1;
   };
 
   const changeColor = (color) => {
