@@ -110,29 +110,38 @@ const SareeDesigner = () => {
       <div style={{ border: "2px solid black", padding: "10px" }}>
         <canvas ref={canvasRef}></canvas>
       </div>
-      <div>
-        <label>
-          Layer 1: <span>{selectedColor}</span>
-        </label>
-        <div className="colorButtonContainer">
-          <div
-            className="colorButton"
-            style={{ backgroundColor: "#00ff00" }}
-            onClick={() => changeColor("#00ff00")}
-          ></div>
-          <div
-            className="colorButton"
-            style={{ backgroundColor: "#0000ff" }}
-            onClick={() => changeColor("#0000ff")}
-          ></div>
-        </div>
-      </div>
-      <div>
-        <label>
-          Layer 2: <span>{flowerColor}</span>
-        </label>
-        <div className="colorButtonContainer">
-          <div
+      <table>
+        <thead>
+          <tr>
+            <th>Layer Name</th>
+            <th>Optional Colors</th>
+            <th>Added/Not Added</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Layer 1</td>
+            <td>
+              <div className="colorButtonContainer">
+                <div
+                  className="colorButton"
+                  style={{ backgroundColor: "#00ff00" }}
+                  onClick={() => changeColor("#00ff00")}
+                ></div>
+                <div
+                  className="colorButton"
+                  style={{ backgroundColor: "#0000ff" }}
+                  onClick={() => changeColor("#0000ff")}
+                ></div>
+              </div>
+            </td>
+            <td>Added</td>
+          </tr>
+          <tr>
+            <td>Layer 2</td>
+            <td>
+              <div className="colorButtonContainer">
+              <div
             className="colorButton"
             style={{ backgroundColor: "#ff00ff" }}
             onClick={() => changeFlowerColor("#ff00ff")}
@@ -142,17 +151,22 @@ const SareeDesigner = () => {
             style={{ backgroundColor: "#00ffff" }}
             onClick={() => changeFlowerColor("#00ffff")}
           ></div>
-        </div>
-      </div>
-      <label className="layerCheckboxLabel" htmlFor="layerCheckbox">
-        <input
-          type="checkbox"
-          id="layerCheckbox"
-          checked={addLayer}
-          onChange={handleToggleLayer}
-        />
-        {addLayer ? "Layer 2 Added" : "Add Layer 2"}
-      </label>
+              </div>
+            </td>
+            <td>
+              <label className="layerCheckboxLabel" htmlFor="layerCheckbox">
+               
+                <input
+                  type="checkbox"
+                  id="layerCheckbox"
+                  checked={addLayer}
+                  onChange={handleToggleLayer}
+                />
+              </label>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   );
 };
