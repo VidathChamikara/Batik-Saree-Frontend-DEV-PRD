@@ -3,7 +3,7 @@ import base from "../images/base.jpeg";
 import layer1 from "../images/layer2.png";
 import layer2 from "../images/layer3.png";
 import "../css/colorButton.css";
-import Button from "react-bootstrap/Button";
+import { Table, Form } from "react-bootstrap";
 
 const SareeDesigner = () => {
   const [selectedColor, setSelectedColor] = useState("transparent"); // Initially transparent
@@ -11,7 +11,7 @@ const SareeDesigner = () => {
   const [isFlowerAdded, setIsFlowerAdded] = useState(false);
   const [addLayer, setAddLayer] = useState(false);
   const canvasWidth = 550; // Hardcoded width
-  const canvasHeight = 200; // Hardcoded height
+  const canvasHeight = 180; // Hardcoded height
   const canvasRef = React.createRef();
 
   useEffect(() => {
@@ -107,10 +107,10 @@ const SareeDesigner = () => {
 
   return (
     <div>
-      <div style={{ border: "2px solid black", padding: "10px" }}>
+      <div style={{ border: "2px solid black", padding: "1px" }}>
         <canvas ref={canvasRef}></canvas>
       </div>
-      <table>
+      <Table striped bordered hover>
         <thead>
           <tr>
             <th>Layer Name</th>
@@ -141,32 +141,30 @@ const SareeDesigner = () => {
             <td>Layer 2</td>
             <td>
               <div className="colorButtonContainer">
-              <div
-            className="colorButton"
-            style={{ backgroundColor: "#ff00ff" }}
-            onClick={() => changeFlowerColor("#ff00ff")}
-          ></div>
-          <div
-            className="colorButton"
-            style={{ backgroundColor: "#00ffff" }}
-            onClick={() => changeFlowerColor("#00ffff")}
-          ></div>
+                <div
+                  className="colorButton"
+                  style={{ backgroundColor: "#ff00ff" }}
+                  onClick={() => changeFlowerColor("#ff00ff")}
+                ></div>
+                <div
+                  className="colorButton"
+                  style={{ backgroundColor: "#00ffff" }}
+                  onClick={() => changeFlowerColor("#00ffff")}
+                ></div>
               </div>
             </td>
             <td>
-              <label className="layerCheckboxLabel" htmlFor="layerCheckbox">
-               
-                <input
-                  type="checkbox"
-                  id="layerCheckbox"
-                  checked={addLayer}
-                  onChange={handleToggleLayer}
-                />
-              </label>
+              <Form.Check
+                type="checkbox"
+                id="layerCheckbox"
+                checked={addLayer}
+                onChange={handleToggleLayer}
+                label=""
+              />
             </td>
           </tr>
         </tbody>
-      </table>
+      </Table>
     </div>
   );
 };

@@ -21,3 +21,10 @@
   width: auto;
   margin-right: 5px; /* Adjust as needed */
 }
+
+@media screen and (max-width: 900px) {
+  canvas {
+    width: 100%;
+    height: auto;
+  }
+}
