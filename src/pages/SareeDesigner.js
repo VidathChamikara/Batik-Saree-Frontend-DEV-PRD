@@ -15,69 +15,69 @@ const SareeDesigner = () => {
   const canvasRef = React.createRef();
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext("2d");
-    const img = new Image();
+    const canvas1 = canvasRef.current;
+    const ctx1 = canvas1.getContext("2d");
+    const img1 = new Image();
 
-    img.onload = () => {
-      canvas.width = canvasWidth;
-      canvas.height = canvasHeight;
-      render(ctx, img);
+    img1.onload = () => {
+      canvas1.width = canvasWidth;
+      canvas1.height = canvasHeight;
+      render(ctx1, img1);
     };
 
-    img.src = base;
+    img1.src = base;
 
-    const render = (ctx, img) => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.globalCompositeOperation = "source-over";
-      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+    const render = (ctx1, img) => {
+      ctx1.clearRect(0, 0, canvas1.width, canvas1.height);
+      ctx1.globalCompositeOperation = "source-over";
+      ctx1.drawImage(img, 0, 0, canvas1.width, canvas1.height);
 
-      ctx.globalCompositeOperation = "color-burn";
-      ctx.fillStyle = selectedColor;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx1.globalCompositeOperation = "color-burn";
+      ctx1.fillStyle = selectedColor;
+      ctx1.fillRect(0, 0, canvas1.width, canvas1.height);
 
-      ctx.globalCompositeOperation = "destination-in";
-      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+      ctx1.globalCompositeOperation = "destination-in";
+      ctx1.drawImage(img, 0, 0, canvas1.width, canvas1.height);
 
-      ctx.globalCompositeOperation = "source-over";
+      ctx1.globalCompositeOperation = "source-over";
 
       if (isFlowerAdded) {
-        addFlowerToCanvas(canvas.width, canvas.height); // Pass canvas dimensions
+        addFlowerToCanvas(canvas1.width, canvas1.height); // Pass canvas dimensions
       }
     };
 
-    render(ctx, img);
+    render(ctx1, img1);
   }, [canvasRef, selectedColor, isFlowerAdded, canvasWidth, canvasHeight]);
 
   const addFlowerToCanvas = (canvasWidth, canvasHeight) => {
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext("2d");
-    const flowerImg = new Image();
+    const canvas1 = canvasRef.current;
+    const ctx1 = canvas1.getContext("2d");
+    const img2 = new Image();
 
-    flowerImg.onload = () => {
-      const flowerCanvas = document.createElement("canvas");
-      flowerCanvas.width = canvasWidth; // Match main canvas width
-      flowerCanvas.height = canvasHeight; // Match main canvas height
-      const flowerCtx = flowerCanvas.getContext("2d");
+    img2.onload = () => {
+      const Canvas2 = document.createElement("canvas");
+      Canvas2.width = canvasWidth; // Match main canvas width
+      Canvas2.height = canvasHeight; // Match main canvas height
+      const Ctx2 = Canvas2.getContext("2d");
 
       // Draw flower image with applied color on the off-screen canvas
-      flowerCtx.drawImage(flowerImg, 0, 0, canvasWidth, canvasHeight);
-      flowerCtx.globalCompositeOperation = "source-in";
-      flowerCtx.fillStyle = flowerColor;
-      flowerCtx.fillRect(0, 0, canvasWidth, canvasHeight);
+      Ctx2.drawImage(img2, 0, 0, canvasWidth, canvasHeight);
+      Ctx2.globalCompositeOperation = "source-in";
+      Ctx2.fillStyle = flowerColor;
+      Ctx2.fillRect(0, 0, canvasWidth, canvasHeight);
 
       // Composite the flower canvas onto the main canvas
-      ctx.drawImage(
-        flowerCanvas,
+      ctx1.drawImage(
+        Canvas2,
         0, // Adjust the position if necessary
         0 // Adjust the position if necessary
       );
 
       // Reset comp. mode to default
-      flowerCtx.globalCompositeOperation = "source-over";
+      Ctx2.globalCompositeOperation = "source-over";
     };
 
-    flowerImg.src = layer1;
+    img2.src = layer1;
   };
 
   const changeColor = (color) => {
