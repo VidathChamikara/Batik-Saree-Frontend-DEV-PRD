@@ -6,10 +6,10 @@ import "../css/colorButton.css";
 import { Table, Form } from "react-bootstrap";
 
 const SareeDesigner = () => {
-  const [selectedColor, setSelectedColor] = useState("transparent"); // Initially transparent
-  const [flowerColor, setFlowerColor] = useState("red");
-  const [isFlowerAdded, setIsFlowerAdded] = useState(false);
-  const [addLayer, setAddLayer] = useState(false);
+  const [selectedLayer1Color, setSelectedLayer1Color] = useState("transparent"); // Initially transparent
+  const [layer2Color, setLayer2Color] = useState("red");
+  const [is2LayerAdded, setIs2LayerAdded] = useState(false);
+  const [add2Layer, setAdd2Layer] = useState(false);
   const canvasWidth = 550; // Hardcoded width
   const canvasHeight = 180; // Hardcoded height
   const canvasRef = React.createRef();
@@ -33,7 +33,7 @@ const SareeDesigner = () => {
       ctx1.drawImage(img, 0, 0, canvas1.width, canvas1.height);
 
       ctx1.globalCompositeOperation = "color-burn";
-      ctx1.fillStyle = selectedColor;
+      ctx1.fillStyle = selectedLayer1Color;
       ctx1.fillRect(0, 0, canvas1.width, canvas1.height);
 
       ctx1.globalCompositeOperation = "destination-in";
@@ -41,15 +41,15 @@ const SareeDesigner = () => {
 
       ctx1.globalCompositeOperation = "source-over";
 
-      if (isFlowerAdded) {
-        addFlowerToCanvas(canvas1.width, canvas1.height); // Pass canvas dimensions
+      if (is2LayerAdded) {
+        addFLayer2ToCanvas(canvas1.width, canvas1.height); // Pass canvas dimensions
       }
     };
 
     render(ctx1, img1);
-  }, [canvasRef, selectedColor, isFlowerAdded, canvasWidth, canvasHeight]);
+  }, [canvasRef, selectedLayer1Color, is2LayerAdded, canvasWidth, canvasHeight]);
 
-  const addFlowerToCanvas = (canvasWidth, canvasHeight) => {
+  const addFLayer2ToCanvas = (canvasWidth, canvasHeight) => {
     const canvas1 = canvasRef.current;
     const ctx1 = canvas1.getContext("2d");
     const img2 = new Image();
@@ -63,7 +63,7 @@ const SareeDesigner = () => {
       // Draw flower image with applied color on the off-screen canvas
       Ctx2.drawImage(img2, 0, 0, canvasWidth, canvasHeight);
       Ctx2.globalCompositeOperation = "source-in";
-      Ctx2.fillStyle = flowerColor;
+      Ctx2.fillStyle = layer2Color;
       Ctx2.fillRect(0, 0, canvasWidth, canvasHeight);
 
       // Composite the flower canvas onto the main canvas
@@ -80,28 +80,28 @@ const SareeDesigner = () => {
     img2.src = layer1;
   };
 
-  const changeColor = (color) => {
-    setSelectedColor(color);
+  const changeLayer1Color = (color) => {
+    setSelectedLayer1Color(color);
   };
 
-  const changeFlowerColor = (color) => {
-    setFlowerColor(color);
+  const changeLayer2Color = (color) => {
+    setLayer2Color(color);
   };
 
-  const addFlower = () => {
-    setIsFlowerAdded(true);
+  const addLayer2 = () => {
+    setIs2LayerAdded(true);
   };
 
-  const removeFlower = () => {
-    setIsFlowerAdded(false);
+  const removeLayer2 = () => {
+    setIs2LayerAdded(false);
   };
 
-  const handleToggleLayer = () => {
-    setAddLayer(!addLayer);
-    if (addLayer) {
-      removeFlower(); // Call removeFlower function when removing layer
+  const handleToggle2Layer = () => {
+    setAdd2Layer(!add2Layer);
+    if (add2Layer) {
+      removeLayer2(); // Call removeFlower function when removing layer
     } else {
-      addFlower(); // Call addFlower function when adding layer
+      addLayer2(); // Call addFlower function when adding layer
     }
   };
 
@@ -126,12 +126,12 @@ const SareeDesigner = () => {
                 <div
                   className="colorButton"
                   style={{ backgroundColor: "#00ff00" }}
-                  onClick={() => changeColor("#00ff00")}
+                  onClick={() => changeLayer1Color("#00ff00")}
                 ></div>
                 <div
                   className="colorButton"
                   style={{ backgroundColor: "#0000ff" }}
-                  onClick={() => changeColor("#0000ff")}
+                  onClick={() => changeLayer1Color("#0000ff")}
                 ></div>
               </div>
             </td>
@@ -144,12 +144,12 @@ const SareeDesigner = () => {
                 <div
                   className="colorButton"
                   style={{ backgroundColor: "#ff00ff" }}
-                  onClick={() => changeFlowerColor("#ff00ff")}
+                  onClick={() => changeLayer2Color("#ff00ff")}
                 ></div>
                 <div
                   className="colorButton"
                   style={{ backgroundColor: "#00ffff" }}
-                  onClick={() => changeFlowerColor("#00ffff")}
+                  onClick={() => changeLayer2Color("#00ffff")}
                 ></div>
               </div>
             </td>
@@ -157,8 +157,8 @@ const SareeDesigner = () => {
               <Form.Check
                 type="checkbox"
                 id="layerCheckbox"
-                checked={addLayer}
-                onChange={handleToggleLayer}
+                checked={add2Layer}
+                onChange={handleToggle2Layer}
                 label=""
               />
             </td>
