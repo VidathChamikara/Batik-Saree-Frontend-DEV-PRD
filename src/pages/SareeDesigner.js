@@ -11,7 +11,7 @@ const SareeDesigner = () => {
   const [is2LayerAdded, setIs2LayerAdded] = useState(false);
   const [add2Layer, setAdd2Layer] = useState(false);
 
-  const [layer3Color, setLayer3Color] = useState("green");
+  const [layer3Color, setLayer3Color] = useState("#00ff00");
   const [is3LayerAdded, setIs3LayerAdded] = useState(false);
   const [add3Layer, setAdd3Layer] = useState(false);
 
