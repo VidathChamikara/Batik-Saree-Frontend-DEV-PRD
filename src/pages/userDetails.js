@@ -10,7 +10,7 @@ const UserDetails = () => {
   const [tokenExpired, setTokenExpired] = useState(false); // State for token expiration
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/user/userData", {
+    fetch("https://batik-saree-backend.onrender.com/api/user/userData", {
       method: "POST",
       crossDomain: true,
       headers: {

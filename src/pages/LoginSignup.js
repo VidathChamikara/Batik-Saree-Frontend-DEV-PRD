@@ -5,12 +5,14 @@ import signup from "../images/Signup.png";
 import "../css/style.css"; // Make sure to import your CSS file
 import { FaFacebookF, FaTwitter, FaGoogle, FaLinkedinIn } from "react-icons/fa";
 import Swal from "sweetalert2";
+import { Navigate } from "react-router-dom";
 
 function LoginSignupPage() {
   const [isSignUpMode, setIsSignUpMode] = useState(true);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [redirect, setRedirect] = useState(false);
 
   const handleSignUpClick = () => {
     setIsSignUpMode(true);
@@ -22,7 +24,7 @@ function LoginSignupPage() {
 
   const handleSignUp = (e) => {
     e.preventDefault();
-    fetch("http://localhost:5000/api/user/register", {
+    fetch("https://batik-saree-backend.onrender.com/api/user/register", {
       method: "POST",
       crossDomain: true,
       headers: {
@@ -60,7 +62,7 @@ function LoginSignupPage() {
   const handleSignIn = (e) => {
     e.preventDefault();
     console.log(username, password);
-    fetch("http://localhost:5000/api/user/login-user", {
+    fetch("https://batik-saree-backend.onrender.com/api/user/login-user", {
       method: "POST",
       crossDomain: true,
       headers: {
@@ -98,12 +100,16 @@ function LoginSignupPage() {
             if (result.isConfirmed) {
               window.localStorage.setItem("token", data.data);
               window.localStorage.setItem("loggedIn", true);
-              window.location.href = "./Home";
+              setRedirect(true); // Set redirect to true
             }
           });
         }
       });
   };
+
+  if (redirect) {
+    return <Navigate to="/Home" />;
+  }
 
   return (
     <div className={`containerone ${isSignUpMode ? "sign-up-mode" : ""}`}>

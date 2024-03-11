@@ -13,6 +13,7 @@ function Landing() {
   const [name, SetName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+ 
 
   const toggleMenu = () => {
     setMenuActive(!menuActive);
@@ -20,7 +21,7 @@ function Landing() {
 
   const handleSignUp = (e) => {
     e.preventDefault();
-    fetch("http://localhost:5000/api/contact/postMessage", {
+    fetch("https://batik-saree-backend.onrender.com/api/contact/postMessage", {
       method: "POST",
       crossDomain: true,
       headers: {
