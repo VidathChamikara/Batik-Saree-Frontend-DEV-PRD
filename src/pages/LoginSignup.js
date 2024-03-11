@@ -1,11 +1,12 @@
-import React from "react";
-import { useState } from "react";
-import log from "../images/Log.png";
-import signup from "../images/Signup.png";
-import "../css/style.css"; // Make sure to import your CSS file
+import React, { useState } from "react";
+import { Spinner } from "react-bootstrap";
 import { FaFacebookF, FaTwitter, FaGoogle, FaLinkedinIn } from "react-icons/fa";
 import Swal from "sweetalert2";
 import { Navigate } from "react-router-dom";
+
+import log from "../images/Log.png";
+import signup from "../images/Signup.png";
+import "../css/style.css"; // Make sure to import your CSS file
 
 function LoginSignupPage() {
   const [isSignUpMode, setIsSignUpMode] = useState(true);
@@ -14,6 +15,7 @@ function LoginSignupPage() {
   const [password, setPassword] = useState("");
   const [redirect, setRedirect] = useState(false);
   const [shouldRefresh, setShouldRefresh] = useState(false); // State for refresh
+  const [isLoading, setIsLoading] = useState(false); // State for loading spinner
 
   const handleSignUpClick = () => {
     setIsSignUpMode(true);
@@ -25,7 +27,8 @@ function LoginSignupPage() {
 
   const handleSignUp = (e) => {
     e.preventDefault();
-    fetch("https://batik-saree-backend.onrender.com/api/user/register", {
+    setIsLoading(true); // Show loading spinner
+    fetch("https://distinct-suit-bass.cyclic.app/api/user/register", {
       method: "POST",
       crossDomain: true,
       headers: {
@@ -41,7 +44,7 @@ function LoginSignupPage() {
     })
       .then((res) => res.json())
       .then((data) => {
-        //console.log(data, "Data pass to api");
+        setIsLoading(false); // Hide loading spinner
         if (data.status === "Already Registred") {
           Swal.fire({
             icon: "error",
@@ -62,8 +65,8 @@ function LoginSignupPage() {
 
   const handleSignIn = (e) => {
     e.preventDefault();
-    console.log(username, password);
-    fetch("https://batik-saree-backend.onrender.com/api/user/login-user", {
+    setIsLoading(true); // Show loading spinner
+    fetch("https://distinct-suit-bass.cyclic.app/api/user/login-user", {
       method: "POST",
       crossDomain: true,
       headers: {
@@ -78,7 +81,7 @@ function LoginSignupPage() {
     })
       .then((res) => res.json())
       .then((data) => {
-        //console.log(data, "Data pass to api");
+        setIsLoading(false); // Hide loading spinner
         if (data.error === "Invalid Username") {
           Swal.fire({
             icon: "error",
@@ -141,6 +144,7 @@ function LoginSignupPage() {
               />
             </div>
             <input type="submit" value="Login" className="btn solid" />
+            {isLoading && <Spinner animation="border" role="status" />}
             <p className="social-text">Connect with our social platforms</p>
             <div className="social-media">
               <a href="https://www.facebook.com" className="social-icon">
@@ -187,6 +191,7 @@ function LoginSignupPage() {
               />
             </div>
             <input type="submit" className="btn" value="Register" />
+            {isLoading && <Spinner animation="border" role="status" />}
             <p className="social-text">Connect with our social platforms</p>
             <div className="social-media">
               <a href="https://www.facebook.com" className="social-icon">

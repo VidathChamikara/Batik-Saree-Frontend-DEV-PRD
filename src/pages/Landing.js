@@ -21,7 +21,7 @@ function Landing() {
 
   const handleSignUp = (e) => {
     e.preventDefault();
-    fetch("https://batik-saree-backend.onrender.com/api/contact/postMessage", {
+    fetch("https://distinct-suit-bass.cyclic.app/api/contact/postMessage", {
       method: "POST",
       crossDomain: true,
       headers: {
