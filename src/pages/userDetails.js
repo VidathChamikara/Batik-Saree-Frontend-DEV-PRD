@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Spinner } from "react-bootstrap";
 import GenaralHome from "./GeneralHome";
 import AdminHome from "./AdminHome";
 import Swal from "sweetalert2";
@@ -10,7 +11,7 @@ const UserDetails = () => {
   const [tokenExpired, setTokenExpired] = useState(false); // State for token expiration
 
   useEffect(() => {
-    fetch("https://batik-saree-backend.onrender.com/api/user/userData", {
+    fetch("http://localhost:5000/api/user/userData", {
       method: "POST",
       crossDomain: true,
       headers: {
@@ -53,9 +54,15 @@ const UserDetails = () => {
     return null; // Return null to prevent rendering anything else
   }
 
-  // Render loading state while data is being fetched
+  // Render spinner while data is being fetched
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
+        <Spinner animation="border" role="status">
+          <span className="sr-only">Loading...</span>
+        </Spinner>
+      </div>
+    );
   }
 
   // Render based on user type after data is fetched
