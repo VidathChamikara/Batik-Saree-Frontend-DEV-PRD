@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate} from "react-router-dom";
 import "../css/landing.css";
 
 import {
@@ -13,6 +13,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 function GenaralNav() {
   const [menuActive, setMenuActive] = useState(false);
+  const [redirect, setRedirect] = useState(false);
 
   const toggleMenu = () => {
     setMenuActive(!menuActive);
@@ -24,8 +25,12 @@ function GenaralNav() {
 
   const logOut = () => {
     window.localStorage.clear();
-    window.location.href = "./loginSignup";
+    setRedirect(true); // Set redirect to true
   };
+
+  if (redirect) {
+    return <Navigate to="/" />;
+  }
   return (
     <nav>
       <div className="nav__logo">

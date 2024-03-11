@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import "../css/landing.css"; // Make sure to import your CSS file
 import header1 from "../images/header-1.jpg";
 import header2 from "../images/header-2.jpg";
@@ -13,7 +13,7 @@ function Landing() {
   const [name, SetName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
- 
+  const [shouldRefresh, setShouldRefresh] = useState(false);
 
   const toggleMenu = () => {
     setMenuActive(!menuActive);
@@ -50,11 +50,15 @@ function Landing() {
             title: "Success",
             text: "Successfully Submit Your Responce. We will reply as soon as possible. Thank You...",
           }).then(() => {
-            window.location.reload();
+            setShouldRefresh(true);
           });
         }
       });
   };
+
+  if (shouldRefresh) {
+    return <Navigate to="/" />;
+  }
 
   return (
     <div>

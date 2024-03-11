@@ -13,6 +13,7 @@ function LoginSignupPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [redirect, setRedirect] = useState(false);
+  const [shouldRefresh, setShouldRefresh] = useState(false); // State for refresh
 
   const handleSignUpClick = () => {
     setIsSignUpMode(true);
@@ -53,7 +54,7 @@ function LoginSignupPage() {
             title: "Success",
             text: "Successfully Registered. Check your email. Login credentials are there.",
           }).then(() => {
-            window.location.reload();
+            setShouldRefresh(true);
           });
         }
       });
@@ -109,6 +110,10 @@ function LoginSignupPage() {
 
   if (redirect) {
     return <Navigate to="/Home" />;
+  }
+
+  if (shouldRefresh) {
+    return <Navigate to="/loginSignup" />;
   }
 
   return (
