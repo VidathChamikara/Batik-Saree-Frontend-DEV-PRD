@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link, Navigate } from "react-router-dom";
+import React, { useState, useRef } from "react";
+import { Link } from "react-router-dom";
 import "../css/landing.css"; // Make sure to import your CSS file
 import header1 from "../images/header-1.jpg";
 import header2 from "../images/header-2.jpg";
@@ -7,13 +7,15 @@ import sample from "../images/sample.webm";
 import contact1 from "../images/contact1.avif";
 import contact2 from "../images/contact2.jpg";
 import Swal from "sweetalert2";
+import { Spinner } from "react-bootstrap";
 
 function Landing() {
   const [menuActive, setMenuActive] = useState(false);
   const [name, SetName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-  
+  const [loading, setLoading] = useState(false);
+  const formRef = useRef(null); // Ref for accessing the form element
 
   const toggleMenu = () => {
     setMenuActive(!menuActive);
@@ -21,7 +23,8 @@ function Landing() {
 
   const handleSignUp = (e) => {
     e.preventDefault();
-    fetch("https://distinct-suit-bass.cyclic.app/api/contact/postMessage", {
+    setLoading(true); // Show spinner when the form is being submitted
+    fetch("http://localhost:5000/api/contact/postMessage", {
       method: "POST",
       crossDomain: true,
       headers: {
@@ -30,14 +33,15 @@ function Landing() {
         "Access-Control-Allow-Origin": "*",
       },
       body: JSON.stringify({
-        name,
-        email,
-        message,
+        name: formRef.current.name.value,
+        email: formRef.current.email.value,
+        message: formRef.current.message.value,
       }),
     })
       .then((res) => res.json())
       .then((data) => {
         //console.log(data, "Data pass to api");
+        setLoading(false);
         if (data.status === "error") {
           Swal.fire({
             icon: "error",
@@ -50,15 +54,11 @@ function Landing() {
             title: "Success",
             text: "Successfully Submit Your Responce. We will reply as soon as possible. Thank You...",
           }).then(() => {
-            SetName(""); // Clear name field
-            setEmail(""); // Clear email field
-            setMessage(""); // Clear message field
+            formRef.current.reset(); // Reset the form fields
           });
         }
       });
   };
-
-  
 
   return (
     <div>
@@ -152,7 +152,7 @@ function Landing() {
 
             <div className="contact-container">
               <div className="contact-form row">
-                <form action="#" onSubmit={handleSignUp}>
+                <form ref={formRef} action="#" onSubmit={handleSignUp}>
                   <div className="form-field col-lg-6">
                     <input
                       id="name"
@@ -202,6 +202,13 @@ function Landing() {
                       value="Submit"
                       name="submit"
                     />
+                    {loading && (
+                      <div className="spinner-container">
+                        <Spinner animation="border" role="status">
+                          <span className="sr-only">Loading...</span>
+                        </Spinner>
+                      </div>
+                    )}
                   </div>
                 </form>
               </div>
