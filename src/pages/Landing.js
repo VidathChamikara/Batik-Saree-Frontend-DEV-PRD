@@ -13,7 +13,7 @@ function Landing() {
   const [name, SetName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-  const [shouldRefresh, setShouldRefresh] = useState(false);
+  
 
   const toggleMenu = () => {
     setMenuActive(!menuActive);
@@ -21,7 +21,7 @@ function Landing() {
 
   const handleSignUp = (e) => {
     e.preventDefault();
-    fetch("http://localhost:5000/api/contact/postMessage", {
+    fetch("https://distinct-suit-bass.cyclic.app/api/contact/postMessage", {
       method: "POST",
       crossDomain: true,
       headers: {
@@ -50,15 +50,15 @@ function Landing() {
             title: "Success",
             text: "Successfully Submit Your Responce. We will reply as soon as possible. Thank You...",
           }).then(() => {
-            setShouldRefresh(true);
+            SetName(""); // Clear name field
+            setEmail(""); // Clear email field
+            setMessage(""); // Clear message field
           });
         }
       });
   };
 
-  if (shouldRefresh) {
-    return <Navigate to="/" />;
-  }
+  
 
   return (
     <div>
