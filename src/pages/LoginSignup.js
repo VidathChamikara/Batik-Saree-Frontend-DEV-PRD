@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Spinner } from "react-bootstrap";
 import { FaFacebookF, FaTwitter, FaGoogle, FaLinkedinIn } from "react-icons/fa";
 import Swal from "sweetalert2";
@@ -14,8 +14,8 @@ function LoginSignupPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [redirect, setRedirect] = useState(false);
-  const [shouldRefresh, setShouldRefresh] = useState(false); // State for refresh
   const [isLoading, setIsLoading] = useState(false); // State for loading spinner
+  const formRef = useRef(null); // Ref for accessing the form element
 
   const handleSignUpClick = () => {
     setIsSignUpMode(true);
@@ -37,9 +37,9 @@ function LoginSignupPage() {
         "Access-Control-Allow-Origin": "*",
       },
       body: JSON.stringify({
-        username,
-        email,
-        password,
+        username: formRef.current.username.value,
+        email: formRef.current.email.value,
+        password: formRef.current.password.value,
       }),
     })
       .then((res) => res.json())
@@ -57,7 +57,7 @@ function LoginSignupPage() {
             title: "Success",
             text: "Successfully Registered. Check your email. Login credentials are there.",
           }).then(() => {
-            setShouldRefresh(true);
+            formRef.current.reset(); // Reset the form fields
           });
         }
       });
@@ -115,10 +115,6 @@ function LoginSignupPage() {
     return <Navigate to="/Home" />;
   }
 
-  if (shouldRefresh) {
-    return <Navigate to="/" />;
-  }
-
   return (
     <div className={`containerone ${isSignUpMode ? "sign-up-mode" : ""}`}>
       <div className="forms-container">
@@ -128,6 +124,8 @@ function LoginSignupPage() {
             <div className="input-field">
               <i className="fa fa-user"></i>
               <input
+                id="username"
+                name="username"
                 type="text"
                 placeholder="Username"
                 onChange={(e) => setUsername(e.target.value)}
@@ -137,6 +135,8 @@ function LoginSignupPage() {
             <div className="input-field">
               <i className="fa fa-lock"></i>
               <input
+                id="password"
+                name="password"
                 type="password"
                 placeholder="Password"
                 onChange={(e) => setPassword(e.target.value)}
@@ -161,11 +161,18 @@ function LoginSignupPage() {
               </a>
             </div>
           </form>
-          <form action="#" className="sign-up-form" onSubmit={handleSignUp}>
+          <form
+            ref={formRef}
+            action="#"
+            className="sign-up-form"
+            onSubmit={handleSignUp}
+          >
             <h2 className="title">Register</h2>
             <div className="input-field">
               <i className="fa fa-user"></i>
               <input
+                id="username"
+                name="username"
                 type="text"
                 placeholder="Username"
                 onChange={(e) => setUsername(e.target.value)}
@@ -175,6 +182,8 @@ function LoginSignupPage() {
             <div className="input-field">
               <i className="fa fa-envelope"></i>
               <input
+                id="email"
+                name="email"
                 type="email"
                 placeholder="Email"
                 onChange={(e) => setEmail(e.target.value)}
@@ -184,6 +193,8 @@ function LoginSignupPage() {
             <div className="input-field">
               <i className="fa fa-lock"></i>
               <input
+                id="password"
+                name="password"
                 type="password"
                 placeholder="Password"
                 onChange={(e) => setPassword(e.target.value)}
