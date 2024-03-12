@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link, Navigate} from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, Navigate } from "react-router-dom";
 import "../css/landing.css";
 
 import {
@@ -14,6 +14,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
 function GenaralNav() {
   const [menuActive, setMenuActive] = useState(false);
   const [redirect, setRedirect] = useState(false);
+  const [userType, setUserType] = useState("");
+
+  useEffect(() => {
+    // Get user type from localStorage
+    const storedUserType = window.localStorage.getItem("userType");
+    setUserType(storedUserType);
+  }, []);
 
   const toggleMenu = () => {
     setMenuActive(!menuActive);
@@ -31,6 +38,7 @@ function GenaralNav() {
   if (redirect) {
     return <Navigate to="/" />;
   }
+
   return (
     <nav>
       <div className="nav__logo">
@@ -45,32 +53,40 @@ function GenaralNav() {
         <div></div>
       </div>
       <ul className={`nav__links ${menuActive ? "active" : ""}`}>
-        <li className="link">
-          <Link to="/adminHome" style={{ fontSize: "18px" }}>
-            Home
-          </Link>
-        </li>
-        <li className="link">
-          <Link to="/kandyan" style={{ fontSize: "18px" }}>
-            Kandyan
-          </Link>
-        </li>
-        <li className="link">
-          <a href="#contact" style={{ fontSize: "18px" }}>
-            Indian
-          </a>
-        </li>
-        <li className="link">
-          <a href="#contact" style={{ fontSize: "18px" }}>
-            Batik
-          </a>
-        </li>
-        <li className="link">
-          <a href="#contact" style={{ fontSize: "18px" }}>
-            More
-          </a>
-        </li>
+        {userType === "Admin" && ( // Render these links only for admin user
+          <>
+            <li className="link">
+              <Link to="/adminHome" style={{ fontSize: "18px" }}>
+                Admin Home
+              </Link>
+            </li>
 
+            <li className="link">
+              <Link to="/kandyan" style={{ fontSize: "18px" }}>
+                Batik Studio
+              </Link>
+            </li>
+            <li className="link">
+              <a href="#contact" style={{ fontSize: "18px" }}>
+                Users
+              </a>
+            </li>
+          </>
+        )}
+        {userType === "General User" && ( // Render these links only for admin user
+          <>
+            <li className="link">
+              <a href="#contact" style={{ fontSize: "18px" }}>
+                User Home
+              </a>
+            </li>
+            <li className="link">
+              <a href="#contact" style={{ fontSize: "18px" }}>
+                More
+              </a>
+            </li>
+          </>
+        )}
         <ButtonGroup>
           <ButtonDropdown
             className="py-0"
