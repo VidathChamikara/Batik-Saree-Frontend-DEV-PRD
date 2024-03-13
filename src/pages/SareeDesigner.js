@@ -4,10 +4,11 @@ import layer2 from "../images/layer2.png";
 import layer3 from "../images/layer3.png";
 import "../css/colorButton.css";
 import { Table, Form } from "react-bootstrap";
+import { DropdownButton } from "react-bootstrap";
 
 const SareeDesigner = () => {
   const [selectedLayer1Color, setSelectedLayer1Color] = useState("transparent"); // Initially transparent
-  const [layer2Color, setLayer2Color] = useState("red");
+  const [layer2Color, setLayer2Color] = useState("#FF0000");
   const [is2LayerAdded, setIs2LayerAdded] = useState(false);
   const [add2Layer, setAdd2Layer] = useState(false);
 
@@ -175,6 +176,7 @@ const SareeDesigner = () => {
 
   return (
     <div>
+      <h3>Model Number : </h3>
       <div style={{ border: "2px solid black", padding: "1px" }}>
         <canvas ref={canvasRef}></canvas>
       </div>
@@ -190,36 +192,50 @@ const SareeDesigner = () => {
           <tr>
             <td>Layer 1</td>
             <td>
-              <div className="colorButtonContainer">
-                <div
-                  className="colorButton"
-                  style={{ backgroundColor: "#00ff00" }}
-                  onClick={() => changeLayer1Color("#00ff00")}
-                ></div>
-                <div
-                  className="colorButton"
-                  style={{ backgroundColor: "#0000ff" }}
-                  onClick={() => changeLayer1Color("#0000ff")}
-                ></div>
-              </div>
+              <DropdownButton id="colorDropdown" title="Color">
+                <div className="colorButtonContainer">
+                  <div
+                    className="colorButton"
+                    style={{ backgroundColor: "#FFFF00" }}
+                    onClick={() => changeLayer1Color("transparent")}
+                  ></div>
+                  <div
+                    className="colorButton"
+                    style={{ backgroundColor: "#ff00ff" }}
+                    onClick={() => changeLayer1Color("#ff00ff")}
+                  ></div>
+                  <div
+                    className="colorButton"
+                    style={{ backgroundColor: "#00ffff" }}
+                    onClick={() => changeLayer1Color("#00ffff")}
+                  ></div>
+                </div>
+              </DropdownButton>
             </td>
             <td>Added</td>
           </tr>
           <tr>
             <td>Layer 2</td>
             <td>
-              <div className="colorButtonContainer">
-                <div
-                  className="colorButton"
-                  style={{ backgroundColor: "#ff00ff" }}
-                  onClick={() => changeLayer2Color("#ff00ff")}
-                ></div>
-                <div
-                  className="colorButton"
-                  style={{ backgroundColor: "#00ffff" }}
-                  onClick={() => changeLayer2Color("#00ffff")}
-                ></div>
-              </div>
+              <DropdownButton id="colorDropdown" title="Color">
+                <div className="colorButtonContainer">
+                  <div
+                    className="colorButton"
+                    style={{ backgroundColor: "#FF0000" }}
+                    onClick={() => changeLayer2Color("#FF0000")}
+                  ></div>
+                  <div
+                    className="colorButton"
+                    style={{ backgroundColor: "#ff00ff" }}
+                    onClick={() => changeLayer2Color("#ff00ff")}
+                  ></div>
+                  <div
+                    className="colorButton"
+                    style={{ backgroundColor: "#00ffff" }}
+                    onClick={() => changeLayer2Color("#00ffff")}
+                  ></div>
+                </div>
+              </DropdownButton>
             </td>
             <td>
               <Form.Check
@@ -234,18 +250,25 @@ const SareeDesigner = () => {
           <tr>
             <td>Layer 3</td>
             <td>
-              <div className="colorButtonContainer">
-                <div
-                  className="colorButton"
-                  style={{ backgroundColor: "#ff00ff" }}
-                  onClick={() => changeLayer3Color("#ff00ff")}
-                ></div>
-                <div
-                  className="colorButton"
-                  style={{ backgroundColor: "#00ffff" }}
-                  onClick={() => changeLayer3Color("#00ffff")}
-                ></div>
-              </div>
+              <DropdownButton id="colorDropdown" title="Color">
+                <div className="colorButtonContainer">
+                  <div
+                    className="colorButton"
+                    style={{ backgroundColor: "#00ff00" }}
+                    onClick={() => changeLayer2Color("#00ff00")}
+                  ></div>
+                  <div
+                    className="colorButton"
+                    style={{ backgroundColor: "#ff00ff" }}
+                    onClick={() => changeLayer3Color("#ff00ff")}
+                  ></div>
+                  <div
+                    className="colorButton"
+                    style={{ backgroundColor: "#00ffff" }}
+                    onClick={() => changeLayer3Color("#00ffff")}
+                  ></div>
+                </div>
+              </DropdownButton>
             </td>
             <td>
               <Form.Check
@@ -262,26 +285,31 @@ const SareeDesigner = () => {
       {/* Material Selection */}
       <div>
         <Form.Group controlId="materialSelection">
-          <Form.Label>Select Material:</Form.Label>
-          <div className="checkbox-container">
+          <Form.Label>
+            <b>Select Material:</b>
+          </Form.Label>
+          <div className="radio-container">
             <div className="row">
               <div className="col">
                 <Form.Check
-                  type="checkbox"
+                  type="radio"
+                  name="material"
                   label="Super voil"
                   // Add event handlers if needed
                 />
               </div>
               <div className="col">
                 <Form.Check
-                  type="checkbox"
+                  type="radio"
+                  name="material"
                   label="Silk"
                   // Add event handlers if needed
                 />
               </div>
               <div className="col">
                 <Form.Check
-                  type="checkbox"
+                  type="radio"
+                  name="material"
                   label="Java painted"
                   // Add event handlers if needed
                 />
@@ -290,6 +318,7 @@ const SareeDesigner = () => {
           </div>
         </Form.Group>
       </div>
+      <b>Price:</b>
     </div>
   );
 };
