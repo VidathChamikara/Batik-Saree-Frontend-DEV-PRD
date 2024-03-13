@@ -57,14 +57,19 @@ function GenaralNav() {
           <>
             <li className="link">
               <Link to="/adminHome" style={{ fontSize: "18px" }}>
-                Admin Home
+                Home
               </Link>
             </li>
 
             <li className="link">
               <Link to="/kandyan" style={{ fontSize: "18px" }}>
-                Batik Studio
+                Showroom
               </Link>
+            </li>
+            <li className="link">
+              <a href="#contact" style={{ fontSize: "18px" }}>
+                Designs
+              </a>
             </li>
             <li className="link">
               <a href="#contact" style={{ fontSize: "18px" }}>
@@ -76,14 +81,14 @@ function GenaralNav() {
         {userType === "General User" && ( // Render these links only for admin user
           <>
             <li className="link">
-              <a href="#contact" style={{ fontSize: "18px" }}>
-                User Home
-              </a>
+              <Link to="/generalHome" style={{ fontSize: "18px" }}>
+                Home
+              </Link>
             </li>
             <li className="link">
-              <a href="#contact" style={{ fontSize: "18px" }}>
-                More
-              </a>
+              <Link to="/kandyan" style={{ fontSize: "18px" }}>
+                Showroom
+              </Link>
             </li>
           </>
         )}

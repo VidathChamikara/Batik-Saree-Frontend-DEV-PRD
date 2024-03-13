@@ -178,7 +178,7 @@ const SareeDesigner = () => {
       <div style={{ border: "2px solid black", padding: "1px" }}>
         <canvas ref={canvasRef}></canvas>
       </div>
-      <Table striped bordered hover>
+      <Table striped borderless hover>
         <thead>
           <tr>
             <th>Layer Name</th>
@@ -227,7 +227,7 @@ const SareeDesigner = () => {
                 id="layerCheckbox"
                 checked={add2Layer}
                 onChange={handleToggle2Layer}
-                label=""
+                label={add2Layer ? "Added" : "Not Added"}
               />
             </td>
           </tr>
@@ -253,12 +253,43 @@ const SareeDesigner = () => {
                 id="layerCheckbox"
                 checked={add3Layer}
                 onChange={handleToggle3Layer}
-                label=""
+                label={add3Layer ? "Added" : "Not Added"}
               />
             </td>
           </tr>
         </tbody>
       </Table>
+      {/* Material Selection */}
+      <div>
+        <Form.Group controlId="materialSelection">
+          <Form.Label>Select Material:</Form.Label>
+          <div className="checkbox-container">
+            <div className="row">
+              <div className="col">
+                <Form.Check
+                  type="checkbox"
+                  label="Super voil"
+                  // Add event handlers if needed
+                />
+              </div>
+              <div className="col">
+                <Form.Check
+                  type="checkbox"
+                  label="Silk"
+                  // Add event handlers if needed
+                />
+              </div>
+              <div className="col">
+                <Form.Check
+                  type="checkbox"
+                  label="Java painted"
+                  // Add event handlers if needed
+                />
+              </div>
+            </div>
+          </div>
+        </Form.Group>
+      </div>
     </div>
   );
 };

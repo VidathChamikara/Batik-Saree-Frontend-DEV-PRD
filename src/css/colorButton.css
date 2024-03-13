@@ -22,6 +22,11 @@
   margin-right: 5px; /* Adjust as needed */
 }
 
+.checkbox-container .form-check-input {
+  width: auto;
+  margin-right: 5px; /* Adjust margin as needed */
+}
+
 @media screen and (max-width: 900px) {
   canvas {
     width: 100%;
