@@ -12,11 +12,6 @@
   border-radius: 50%; /* Make the button round */
 }
 
-.layerCheckboxLabel {
-  display: inline-flex;
-  align-items: center;
-}
-
 #layerCheckbox {
   width: auto;
   margin-right: 5px; /* Adjust as needed */
