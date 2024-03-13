@@ -12,7 +12,7 @@ function Kandyan() {
           <img src={model} alt="model" />
         </div>
         <div className="content__homecontainer">
-          <h3>Model Number</h3>
+         
           <SareeDesigner />
         </div>
       </section>
