@@ -3,8 +3,7 @@ import layer1 from "../images/base.jpeg";
 import layer2 from "../images/layer2.png";
 import layer3 from "../images/layer3.png";
 import "../css/colorButton.css";
-import { Table, Form } from "react-bootstrap";
-import { DropdownButton } from "react-bootstrap";
+import { Table, Form, DropdownButton, Badge } from "react-bootstrap";
 
 const SareeDesigner = () => {
   const [selectedLayer1Color, setSelectedLayer1Color] = useState("transparent"); // Initially transparent
@@ -184,13 +183,14 @@ const SareeDesigner = () => {
         <thead>
           <tr>
             <th>Layer Name</th>
-            <th>Optional Colors</th>
             <th>Added/Not Added</th>
+            <th>Optional Colors</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>Layer 1</td>
+            <td><Badge>Added</Badge></td>
             <td>
               <DropdownButton id="colorDropdown" title="Color">
                 <div className="colorButtonContainer">
@@ -212,10 +212,22 @@ const SareeDesigner = () => {
                 </div>
               </DropdownButton>
             </td>
-            <td>Added</td>
           </tr>
           <tr>
             <td>Layer 2</td>
+            <td>
+              <div>
+                <Form.Check
+                  type="checkbox"
+                  id="layerCheckbox"
+                  checked={add2Layer}
+                  onChange={handleToggle2Layer}
+                  label={
+                    add2Layer ? <Badge>Added</Badge> : <Badge>Not Added</Badge>
+                  }
+                />
+              </div>
+            </td>
             <td>
               <DropdownButton id="colorDropdown" title="Color">
                 <div className="colorButtonContainer">
@@ -237,18 +249,20 @@ const SareeDesigner = () => {
                 </div>
               </DropdownButton>
             </td>
+          </tr>
+          <tr>
+            <td>Layer 3</td>
             <td>
               <Form.Check
                 type="checkbox"
                 id="layerCheckbox"
-                checked={add2Layer}
-                onChange={handleToggle2Layer}
-                label={add2Layer ? "Added" : "Not Added"}
+                checked={add3Layer}
+                onChange={handleToggle3Layer}
+                label={
+                  add3Layer ? <Badge>Added</Badge> : <Badge>Not Added</Badge>
+                }
               />
             </td>
-          </tr>
-          <tr>
-            <td>Layer 3</td>
             <td>
               <DropdownButton id="colorDropdown" title="Color">
                 <div className="colorButtonContainer">
@@ -269,15 +283,6 @@ const SareeDesigner = () => {
                   ></div>
                 </div>
               </DropdownButton>
-            </td>
-            <td>
-              <Form.Check
-                type="checkbox"
-                id="layerCheckbox"
-                checked={add3Layer}
-                onChange={handleToggle3Layer}
-                label={add3Layer ? "Added" : "Not Added"}
-              />
             </td>
           </tr>
         </tbody>
