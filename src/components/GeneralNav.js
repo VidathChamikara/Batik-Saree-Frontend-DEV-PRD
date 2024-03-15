@@ -27,8 +27,10 @@ function GenaralNav() {
   };
 
   const [dropdownOpen, setOpen] = useState(false);
+  const [showdropdownOpen, setShowOpen] = useState(false);
 
   const toggle = () => setOpen(!dropdownOpen);
+  const toggleshow = () => setShowOpen(!showdropdownOpen);
 
   const logOut = () => {
     window.localStorage.clear();
@@ -57,23 +59,47 @@ function GenaralNav() {
           <>
             <li className="link">
               <Link to="/adminHome" style={{ fontSize: "18px" }}>
-                Home
+                HOME
               </Link>
             </li>
-
-            <li className="link">
-              <Link to="/kandyan" style={{ fontSize: "18px" }}>
-                Showroom
-              </Link>
-            </li>
+            <ButtonGroup>
+              <ButtonDropdown
+                className="py-0"
+                isOpen={showdropdownOpen}
+                toggle={toggleshow}
+              >
+                <DropdownToggle
+                  style={{
+                    padding: "0.25rem 0.5rem",
+                    lineHeight: "1.5",
+                    backgroundColor: "white", // Set background color to white
+                    borderColor: "white", // Set border color to white
+                    color: "#5c48ee",
+                  }}
+                >
+                  <li className="link">
+                    <Link style={{ fontSize: "18px" }}>Showroom</Link>
+                  </li>
+                </DropdownToggle>
+                <DropdownMenu>
+                  <DropdownItem>
+                    <li className="link">
+                      <Link to="/kandyan" style={{ fontSize: "18px" }}>
+                        Kandyan
+                      </Link>
+                    </li>
+                  </DropdownItem>
+                </DropdownMenu>
+              </ButtonDropdown>
+            </ButtonGroup>
             <li className="link">
               <a href="#contact" style={{ fontSize: "18px" }}>
-                Designs
+                DESIGNS
               </a>
             </li>
             <li className="link">
               <a href="#contact" style={{ fontSize: "18px" }}>
-                Users
+                USERS
               </a>
             </li>
           </>
@@ -82,14 +108,25 @@ function GenaralNav() {
           <>
             <li className="link">
               <Link to="/generalHome" style={{ fontSize: "18px" }}>
-                Home
+                HOME
               </Link>
             </li>
-            <li className="link">
-              <Link to="/kandyan" style={{ fontSize: "18px" }}>
-                Showroom
-              </Link>
-            </li>
+            <ButtonGroup>
+              <ButtonDropdown className="py-0">
+                <DropdownToggle
+                  style={{
+                    padding: "0.25rem 0.5rem",
+                    lineHeight: "1.5",
+                    backgroundColor: "white", // Set background color to white
+                    borderColor: "white", // Set border color to white
+                    color: "#5c48ee",
+                  }}
+                >
+                  <li className="link">Showroom</li>
+                </DropdownToggle>
+                <DropdownMenu></DropdownMenu>
+              </ButtonDropdown>
+            </ButtonGroup>
           </>
         )}
         <ButtonGroup>

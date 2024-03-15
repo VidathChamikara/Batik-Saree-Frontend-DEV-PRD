@@ -175,7 +175,7 @@ const SareeDesigner = () => {
 
   return (
     <div>
-      <h3>Model Number : </h3>
+      <h3>Kandyan Showroom</h3>
       <div style={{ border: "2px solid black", padding: "1px" }}>
         <canvas ref={canvasRef}></canvas>
       </div>
