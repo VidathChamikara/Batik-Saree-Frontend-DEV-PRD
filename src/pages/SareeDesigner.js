@@ -322,9 +322,9 @@ const SareeDesigner = () => {
             </div>
           </div>
         </Form.Group>
-      </div>
-      <b>Price:</b>
-      <b>Model No:</b>
+      </div><br/>
+      <b>Price : </b> <br/><br/>
+      <b>Model No : </b>
     </div>
   );
 };

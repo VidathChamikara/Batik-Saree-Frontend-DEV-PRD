@@ -11,8 +11,7 @@ function Kandyan() {
         <div className="image__model">
           <img src={model} alt="model" />
         </div>
-        <div className="content__homecontainer">
-         
+        <div className="content__homecontainer">         
           <SareeDesigner />
         </div>
       </section>

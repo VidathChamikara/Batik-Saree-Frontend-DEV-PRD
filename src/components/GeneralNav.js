@@ -28,9 +28,11 @@ function GenaralNav() {
 
   const [dropdownOpen, setOpen] = useState(false);
   const [showdropdownOpen, setShowOpen] = useState(false);
+  const [desdropdownOpen, setDesOpen] = useState(false);
 
   const toggle = () => setOpen(!dropdownOpen);
   const toggleshow = () => setShowOpen(!showdropdownOpen);
+  const toggledes = () => setDesOpen(!desdropdownOpen);
 
   const logOut = () => {
     window.localStorage.clear();
@@ -70,8 +72,8 @@ function GenaralNav() {
               >
                 <DropdownToggle
                   style={{
-                    padding: "0.25rem 0.5rem",
-                    lineHeight: "1.5",
+                    padding: "0.10rem 0.5rem",
+                    lineHeight: "0.01",
                     backgroundColor: "white", // Set background color to white
                     borderColor: "white", // Set border color to white
                     color: "#5c48ee",
@@ -92,11 +94,36 @@ function GenaralNav() {
                 </DropdownMenu>
               </ButtonDropdown>
             </ButtonGroup>
-            <li className="link">
-              <a href="#contact" style={{ fontSize: "18px" }}>
-                DESIGNS
-              </a>
-            </li>
+            <ButtonGroup>
+              <ButtonDropdown
+                className="py-0"
+                isOpen={desdropdownOpen}
+                toggle={toggledes}
+              >
+                <DropdownToggle
+                  style={{
+                    padding: "0.10rem 0.5rem",
+                    lineHeight: "0.01",
+                    backgroundColor: "white", // Set background color to white
+                    borderColor: "white", // Set border color to white
+                    color: "#5c48ee",
+                  }}
+                >
+                  <li className="link">
+                    <Link style={{ fontSize: "18px" }}>Designs</Link>
+                  </li>
+                </DropdownToggle>
+                <DropdownMenu>
+                  <DropdownItem>
+                    <li className="link">
+                      <Link to="/kandyan" style={{ fontSize: "18px" }}>
+                        Kandyan
+                      </Link>
+                    </li>
+                  </DropdownItem>
+                </DropdownMenu>
+              </ButtonDropdown>
+            </ButtonGroup>
             <li className="link">
               <a href="#contact" style={{ fontSize: "18px" }}>
                 USERS

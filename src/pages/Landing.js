@@ -24,7 +24,7 @@ function Landing() {
   const handleSignUp = (e) => {
     e.preventDefault();
     setLoading(true); // Show spinner when the form is being submitted
-    fetch("http://localhost:5000/api/contact/postMessage", {
+    fetch("https://distinct-suit-bass.cyclic.app/api/contact/postMessage", {
       method: "POST",
       crossDomain: true,
       headers: {
