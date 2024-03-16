@@ -17,6 +17,7 @@ import UserDetails from "./pages/userDetails";
 import GeneralHome from "./pages/GeneralHome";
 import AdminHome from "./pages/AdminHome";
 import Kandyan from "./pages/Kandyan";
+import KandyanAdmin from "./pages/KandyanAdmin";
 
 // Define PrivateRoute component for protecting routes
 const PrivateRoute = ({ element, userType, ...rest }) => {
@@ -69,6 +70,10 @@ function App() {
         <Route
           path="/adminHome"
           element={<PrivateRoute element={<AdminHome />} userType="admin" />}
+        />
+        <Route
+          path="/kandyanAdmin"
+          element={<PrivateRoute element={<KandyanAdmin />} userType="admin" />}
         />
         <Route
           path="/Home"

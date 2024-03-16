@@ -3,6 +3,7 @@ import layer1 from "../images/base.jpeg";
 import layer2 from "../images/layer2.png";
 import layer3 from "../images/layer3.png";
 import "../css/colorButton.css";
+import model from "../images/kandyan.jpg";
 import { Table, Form, DropdownButton, Badge } from "react-bootstrap";
 
 const SareeDesigner = () => {
@@ -175,156 +176,184 @@ const SareeDesigner = () => {
 
   return (
     <div>
-      <h3>Kandyan Showroom</h3>
-      <div style={{ border: "2px solid black", padding: "1px" }}>
-        <canvas ref={canvasRef}></canvas>
-      </div>
-      <Table striped borderless hover>
-        <thead>
-          <tr>
-            <th>Layer Name</th>
-            <th>Added/Not Added</th>
-            <th>Optional Colors</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Layer 1</td>
-            <td><Badge>Added</Badge></td>
-            <td>
-              <DropdownButton id="colorDropdown" title="Color">
-                <div className="colorButtonContainer">
-                  <div
-                    className="colorButton"
-                    style={{ backgroundColor: "#FFFF00" }}
-                    onClick={() => changeLayer1Color("transparent")}
-                  ></div>
-                  <div
-                    className="colorButton"
-                    style={{ backgroundColor: "#ff00ff" }}
-                    onClick={() => changeLayer1Color("#ff00ff")}
-                  ></div>
-                  <div
-                    className="colorButton"
-                    style={{ backgroundColor: "#00ffff" }}
-                    onClick={() => changeLayer1Color("#00ffff")}
-                  ></div>
-                </div>
-              </DropdownButton>
-            </td>
-          </tr>
-          <tr>
-            <td>Layer 2</td>
-            <td>
-              <div>
-                <Form.Check
-                  type="checkbox"
-                  id="layerCheckbox"
-                  checked={add2Layer}
-                  onChange={handleToggle2Layer}
-                  label={
-                    add2Layer ? <Badge>Added</Badge> : <Badge>Not Added</Badge>
-                  }
-                />
-              </div>
-            </td>
-            <td>
-              <DropdownButton id="colorDropdown" title="Color">
-                <div className="colorButtonContainer">
-                  <div
-                    className="colorButton"
-                    style={{ backgroundColor: "#FF0000" }}
-                    onClick={() => changeLayer2Color("#FF0000")}
-                  ></div>
-                  <div
-                    className="colorButton"
-                    style={{ backgroundColor: "#ff00ff" }}
-                    onClick={() => changeLayer2Color("#ff00ff")}
-                  ></div>
-                  <div
-                    className="colorButton"
-                    style={{ backgroundColor: "#00ffff" }}
-                    onClick={() => changeLayer2Color("#00ffff")}
-                  ></div>
-                </div>
-              </DropdownButton>
-            </td>
-          </tr>
-          <tr>
-            <td>Layer 3</td>
-            <td>
-              <Form.Check
-                type="checkbox"
-                id="layerCheckbox"
-                checked={add3Layer}
-                onChange={handleToggle3Layer}
-                label={
-                  add3Layer ? <Badge>Added</Badge> : <Badge>Not Added</Badge>
-                }
-              />
-            </td>
-            <td>
-              <DropdownButton id="colorDropdown" title="Color">
-                <div className="colorButtonContainer">
-                  <div
-                    className="colorButton"
-                    style={{ backgroundColor: "#00ff00" }}
-                    onClick={() => changeLayer2Color("#00ff00")}
-                  ></div>
-                  <div
-                    className="colorButton"
-                    style={{ backgroundColor: "#ff00ff" }}
-                    onClick={() => changeLayer3Color("#ff00ff")}
-                  ></div>
-                  <div
-                    className="colorButton"
-                    style={{ backgroundColor: "#00ffff" }}
-                    onClick={() => changeLayer3Color("#00ffff")}
-                  ></div>
-                </div>
-              </DropdownButton>
-            </td>
-          </tr>
-        </tbody>
-      </Table>
-      {/* Material Selection */}
-      <div>
-        <Form.Group controlId="materialSelection">
-          <Form.Label>
-            <b>Select Material:</b>
-          </Form.Label>
-          <div className="radio-container">
-            <div className="row">
-              <div className="col">
-                <Form.Check
-                  type="radio"
-                  name="material"
-                  label="Super voil"
-                  // Add event handlers if needed
-                />
-              </div>
-              <div className="col">
-                <Form.Check
-                  type="radio"
-                  name="material"
-                  label="Silk"
-                  // Add event handlers if needed
-                />
-              </div>
-              <div className="col">
-                <Form.Check
-                  type="radio"
-                  name="material"
-                  label="Java painted"
-                  // Add event handlers if needed
-                />
-              </div>
-            </div>
+      <section className="homecontainer">
+      <div className="image__model__container">
+          <div className="image__model">
+            <img src={model} alt="model" className="big__image" />
           </div>
-        </Form.Group>
-      </div><br/>
-      <b>Price : </b> <br/><br/>
-      <b>Model No : </b>
+          <div className="small__images__container">
+            <img src={model} alt="smallImage1" className="small__image" />
+            <img src={model} alt="smallImage2" className="small__image" />
+            <img src={model} alt="smallImage3" className="small__image" />
+          </div>
+        </div>
+        <div className="content__homecontainer">
+          <h3>
+            <b>Kandyan Showroom</b>
+          </h3>
+          <div style={{ border: "2px solid black", padding: "1px" }}>
+            <canvas ref={canvasRef}></canvas>
+          </div>
+          <Table striped borderless hover>
+            <thead>
+              <tr>
+                <th>Layer Name</th>
+                <th>Added/Not Added</th>
+                <th>Optional Colors</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Layer 1</td>
+                <td>
+                  <Badge>Added</Badge>
+                </td>
+                <td>
+                  <DropdownButton id="colorDropdown" title="Color">
+                    <div className="colorButtonContainer">
+                      <div
+                        className="colorButton"
+                        style={{ backgroundColor: "#FFFF00" }}
+                        onClick={() => changeLayer1Color("transparent")}
+                      ></div>
+                      <div
+                        className="colorButton"
+                        style={{ backgroundColor: "#ff00ff" }}
+                        onClick={() => changeLayer1Color("#ff00ff")}
+                      ></div>
+                      <div
+                        className="colorButton"
+                        style={{ backgroundColor: "#00ffff" }}
+                        onClick={() => changeLayer1Color("#00ffff")}
+                      ></div>
+                    </div>
+                  </DropdownButton>
+                </td>
+              </tr>
+              <tr>
+                <td>Layer 2</td>
+                <td>
+                  <div>
+                    <Form.Check
+                      type="checkbox"
+                      id="layerCheckbox"
+                      checked={add2Layer}
+                      onChange={handleToggle2Layer}
+                      label={
+                        add2Layer ? (
+                          <Badge>Added</Badge>
+                        ) : (
+                          <Badge>Not Added</Badge>
+                        )
+                      }
+                    />
+                  </div>
+                </td>
+                <td>
+                  <DropdownButton id="colorDropdown" title="Color">
+                    <div className="colorButtonContainer">
+                      <div
+                        className="colorButton"
+                        style={{ backgroundColor: "#FF0000" }}
+                        onClick={() => changeLayer2Color("#FF0000")}
+                      ></div>
+                      <div
+                        className="colorButton"
+                        style={{ backgroundColor: "#ff00ff" }}
+                        onClick={() => changeLayer2Color("#ff00ff")}
+                      ></div>
+                      <div
+                        className="colorButton"
+                        style={{ backgroundColor: "#00ffff" }}
+                        onClick={() => changeLayer2Color("#00ffff")}
+                      ></div>
+                    </div>
+                  </DropdownButton>
+                </td>
+              </tr>
+              <tr>
+                <td>Layer 3</td>
+                <td>
+                  <Form.Check
+                    type="checkbox"
+                    id="layerCheckbox"
+                    checked={add3Layer}
+                    onChange={handleToggle3Layer}
+                    label={
+                      add3Layer ? (
+                        <Badge>Added</Badge>
+                      ) : (
+                        <Badge>Not Added</Badge>
+                      )
+                    }
+                  />
+                </td>
+                <td>
+                  <DropdownButton id="colorDropdown" title="Color">
+                    <div className="colorButtonContainer">
+                      <div
+                        className="colorButton"
+                        style={{ backgroundColor: "#00ff00" }}
+                        onClick={() => changeLayer2Color("#00ff00")}
+                      ></div>
+                      <div
+                        className="colorButton"
+                        style={{ backgroundColor: "#ff00ff" }}
+                        onClick={() => changeLayer3Color("#ff00ff")}
+                      ></div>
+                      <div
+                        className="colorButton"
+                        style={{ backgroundColor: "#00ffff" }}
+                        onClick={() => changeLayer3Color("#00ffff")}
+                      ></div>
+                    </div>
+                  </DropdownButton>
+                </td>
+              </tr>
+            </tbody>
+          </Table>
+          {/* Material Selection */}
+          <div>
+            <Form.Group controlId="materialSelection">
+              <Form.Label>
+                <b>Select Material:</b>
+              </Form.Label>
+              <div className="radio-container">
+                <div className="row">
+                  <div className="col">
+                    <Form.Check
+                      type="radio"
+                      name="material"
+                      label="Super voil"
+                      // Add event handlers if needed
+                    />
+                  </div>
+                  <div className="col">
+                    <Form.Check
+                      type="radio"
+                      name="material"
+                      label="Silk"
+                      // Add event handlers if needed
+                    />
+                  </div>
+                  <div className="col">
+                    <Form.Check
+                      type="radio"
+                      name="material"
+                      label="Java painted"
+                      // Add event handlers if needed
+                    />
+                  </div>
+                </div>
+              </div>
+            </Form.Group>
+          </div>
+          <br />
+          <b>Price : </b> <br />
+          <br />
+          <b>Model No : </b>
+        </div>
+      </section>
     </div>
   );
 };

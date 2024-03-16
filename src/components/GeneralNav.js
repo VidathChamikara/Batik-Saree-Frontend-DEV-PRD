@@ -116,7 +116,7 @@ function GenaralNav() {
                 <DropdownMenu>
                   <DropdownItem>
                     <li className="link">
-                      <Link to="/kandyan" style={{ fontSize: "18px" }}>
+                      <Link to="/kandyanAdmin" style={{ fontSize: "18px" }}>
                         Kandyan
                       </Link>
                     </li>

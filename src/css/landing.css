@@ -166,11 +166,36 @@ nav {
   place-content: center;
 }
 
+.image__model__container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
 .image__model {
   position: relative;
-  display: grid; 
-  place-content: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+.big__image {
+  max-width: 100%;
+  max-height: 400px; /* Adjust as needed */
+}
+
+.small__images__container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.small__image {
+  max-width: 100%;
+  max-height: 150px; /* Adjust as needed */
+  border-radius: 5px;
+}
+
 
 .image__container img {
   width: 100%;
