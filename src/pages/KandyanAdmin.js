@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import GeneralNav from "../components/GeneralNav";
-import { Form, Button, Table } from "react-bootstrap";
+import { Form, Button, Table, Spinner } from "react-bootstrap";
 import Swal from "sweetalert2";
 
 function KandyanAdmin() {
@@ -8,6 +8,7 @@ function KandyanAdmin() {
   const [layer2image, setLayer2Image] = useState(null);
   const [layer3image, setLayer3Image] = useState(null);
   const [tableData, setTableData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false); // State for loading spinner
 
   // Create references for form inputs
   
@@ -39,6 +40,8 @@ function KandyanAdmin() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    setIsLoading(true); // Show loading spinner 
+
     const formData = new FormData();   
     formData.append("layer1image", layer1image);
     formData.append("layer2image", layer2image);
@@ -50,6 +53,8 @@ function KandyanAdmin() {
         body: formData,
       });
 
+      
+
       if (response.ok) {
         const data = await response.json();
         console.log("Image uploaded successfully:", data);
@@ -59,6 +64,8 @@ function KandyanAdmin() {
           title: "Success!",
           text: "Image uploaded successfully.",
         });
+
+        setIsLoading(false); // Hide loading spinner after successful upload
 
         // Clear form input values using refs
         
@@ -72,6 +79,7 @@ function KandyanAdmin() {
       }
     } catch (error) {
       console.error("Error uploading image:", error);
+      setIsLoading(false); // Hide loading spinner on error
       // Show error message using SweetAlert
       Swal.fire({
         icon: "error",
@@ -105,6 +113,7 @@ function KandyanAdmin() {
                 accept="image/*"
                 onChange={(e) => setLayer1Image(e.target.files[0])}
                 ref={layer1ImageRef} // Add ref to layer1Image input
+                required
               />
             </Form.Group>
             <Form.Group controlId="formLayer2">
@@ -114,6 +123,7 @@ function KandyanAdmin() {
                 accept="image/*"
                 onChange={(e) => setLayer2Image(e.target.files[0])}
                 ref={layer2ImageRef} // Add ref to layer2Image input
+                required
               />
             </Form.Group>
             <Form.Group controlId="formLayer3">
@@ -123,11 +133,13 @@ function KandyanAdmin() {
                 accept="image/*"
                 onChange={(e) => setLayer3Image(e.target.files[0])}
                 ref={layer3ImageRef} // Add ref to layer3Image input
+                required
               />
             </Form.Group>
             <Button variant="primary" type="submit">
               Submit
             </Button>
+            {isLoading && <Spinner animation="border" role="status" />}
           </Form>
         </div>
         <div className="content__homecontainer">
