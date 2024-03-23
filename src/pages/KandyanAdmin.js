@@ -4,14 +4,13 @@ import { Form, Button, Table } from "react-bootstrap";
 import Swal from "sweetalert2";
 
 function KandyanAdmin() {
-  const [modelNo, setModelNo] = useState("");
   const [layer1image, setLayer1Image] = useState(null);
   const [layer2image, setLayer2Image] = useState(null);
   const [layer3image, setLayer3Image] = useState(null);
   const [tableData, setTableData] = useState([]);
 
   // Create references for form inputs
-  const modelNoRef = useRef(null);
+  
   const layer1ImageRef = useRef(null);
   const layer2ImageRef = useRef(null);
   const layer3ImageRef = useRef(null);
@@ -40,8 +39,7 @@ function KandyanAdmin() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const formData = new FormData();
-    formData.append("modelNo", modelNo);
+    const formData = new FormData();   
     formData.append("layer1image", layer1image);
     formData.append("layer2image", layer2image);
     formData.append("layer3image", layer3image);
@@ -63,7 +61,7 @@ function KandyanAdmin() {
         });
 
         // Clear form input values using refs
-        modelNoRef.current.value = "";
+        
         layer1ImageRef.current.value = "";
         layer2ImageRef.current.value = "";
         layer3ImageRef.current.value = "";
@@ -99,16 +97,7 @@ function KandyanAdmin() {
             <b>Kandyan Design</b>
           </h3>
           <Form onSubmit={handleSubmit}>
-            <Form.Group controlId="formModelNo">
-              <Form.Label>Model No</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter model number"
-                value={modelNo}
-                onChange={(e) => setModelNo(e.target.value)}
-                ref={modelNoRef} // Add ref to modelNo input
-              />
-            </Form.Group>
+           
             <Form.Group controlId="formLayer1">
               <Form.Label>Layer 1 Image Upload</Form.Label>
               <Form.Control
@@ -144,8 +133,7 @@ function KandyanAdmin() {
         <div className="content__homecontainer">
           <Table striped borderless hover>
             <thead>
-              <tr>
-                <th>Model No</th>
+              <tr>                
                 <th>Layer 1</th>
                 <th>Layer 2</th>
                 <th>Layer 3</th>
@@ -154,8 +142,7 @@ function KandyanAdmin() {
             </thead>
             <tbody>
               {tableData.map((item, index) => (
-                <tr key={index}>
-                  <td>{item.modelNo}</td>
+                <tr key={index}>                 
                   <td>{item.layer1image ? "Uploaded" : "Not Uploaded"}</td>
                   <td>{item.layer2image ? "Uploaded" : "Not Uploaded"}</td>
                   <td>{item.layer3image ? "Uploaded" : "Not Uploaded"}</td>
