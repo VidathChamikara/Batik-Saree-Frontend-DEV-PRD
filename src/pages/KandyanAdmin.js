@@ -5,9 +5,9 @@ import Swal from "sweetalert2";
 
 function KandyanAdmin() {
   const [modelNo, setModelNo] = useState("");
-  const [layer1Image, setLayer1Image] = useState(null);
-  const [layer2Image, setLayer2Image] = useState(null);
-  const [layer3Image, setLayer3Image] = useState(null);
+  const [layer1image, setLayer1Image] = useState(null);
+  const [layer2image, setLayer2Image] = useState(null);
+  const [layer3image, setLayer3Image] = useState(null);
   const [tableData, setTableData] = useState([]);
 
   // Create references for form inputs
@@ -21,7 +21,7 @@ function KandyanAdmin() {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5000/api/kandyan/getKandyanData"
+          "https://fine-tan-bunny-slip.cyclic.app/api/kandyan/getKandyanData"
         );
         if (response.ok) {
           const data = await response.json();
@@ -41,19 +41,16 @@ function KandyanAdmin() {
     event.preventDefault();
 
     const formData = new FormData();
-    formData.append("modelno", modelNo);
-    formData.append("layer1Img", layer1Image);
-    formData.append("layer2Img", layer2Image);
-    formData.append("layer3Img", layer3Image);
+    formData.append("modelNo", modelNo);
+    formData.append("layer1image", layer1image);
+    formData.append("layer2image", layer2image);
+    formData.append("layer3image", layer3image);
 
     try {
-      const response = await fetch(
-        "http://localhost:5000/api/kandyan/uploadImage",
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
+      const response = await fetch("https://fine-tan-bunny-slip.cyclic.app/api/kandyan/upload", {
+        method: "POST",
+        body: formData,
+      });
 
       if (response.ok) {
         const data = await response.json();
@@ -144,12 +141,8 @@ function KandyanAdmin() {
             </Button>
           </Form>
         </div>
-        <div className="content__homecontainer" style={{
-            border: "3px solid #5c48ee",
-            padding: "20px",
-            borderRadius: "10px",
-          }}>
-        <Table striped borderless hover>
+        <div className="content__homecontainer">
+          <Table striped borderless hover>
             <thead>
               <tr>
                 <th>Model No</th>
@@ -162,10 +155,10 @@ function KandyanAdmin() {
             <tbody>
               {tableData.map((item, index) => (
                 <tr key={index}>
-                  <td>{item.modelno}</td>
-                  <td>{item.layer1Img}</td>
-                  <td>{item.layer2Img}</td>
-                  <td>{item.layer3Img}</td>
+                  <td>{item.modelNo}</td>
+                  <td>{item.layer1image ? "Uploaded" : "Not Uploaded"}</td>
+                  <td>{item.layer2image ? "Uploaded" : "Not Uploaded"}</td>
+                  <td>{item.layer3image ? "Uploaded" : "Not Uploaded"}</td>
                   <td></td>
                 </tr>
               ))}

@@ -11,7 +11,7 @@ const UserDetails = () => {
   const [tokenExpired, setTokenExpired] = useState(false); // State for token expiration
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/user/userData", {
+    fetch("https://fine-tan-bunny-slip.cyclic.app/api/user/userData", {
       method: "POST",
       crossDomain: true,
       headers: {
