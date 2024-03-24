@@ -152,7 +152,7 @@ function KandyanAdmin() {
           }}
         >
           <h3>
-            <b>Kandyan Design</b>
+            <b>Kandyan Layers</b>
           </h3>
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="formLayer1">
