@@ -60,6 +60,13 @@ function KandyanAdmin() {
       if (response.ok) {
         const data = await response.json();
         console.log("Image uploaded successfully:", data);
+        const updatedData = await fetch(
+          "https://fine-tan-bunny-slip.cyclic.app/api/kandyan/getKandyanData"
+        );
+        if (updatedData.ok) {
+          const newData = await updatedData.json();
+          setTableData(newData); // Update tableData state with updated data
+        }
 
         Swal.fire({
           icon: "success",
