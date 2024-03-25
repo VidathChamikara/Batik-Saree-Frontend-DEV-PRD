@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import GeneralNav from "../components/GeneralNav";
-import { Form, Button, Table, Spinner } from "react-bootstrap";
+import { Form, Button, Table, Spinner, Badge } from "react-bootstrap";
 import Swal from "sweetalert2";
-import { FaTrash } from 'react-icons/fa';
+import { FaTrash } from "react-icons/fa";
 
 function KandyanAdmin() {
   const [layer1image, setLayer1Image] = useState(null);
@@ -99,44 +99,57 @@ function KandyanAdmin() {
   };
 
   const handleDelete = async (id) => {
-    try {
-      const response = await fetch(
-        `https://fine-tan-bunny-slip.cyclic.app/api/kandyan/deleteKandyan/${id}`,
-        {
-          method: "DELETE",
+    // Show confirmation dialog using SweetAlert
+    Swal.fire({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this image!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const response = await fetch(
+            `https://fine-tan-bunny-slip.cyclic.app/api/kandyan/deleteKandyan/${id}`,
+            {
+              method: "DELETE",
+            }
+          );
+
+          if (response.ok) {
+            const data = await response.json();
+            console.log("Image deleted successfully:", data);
+
+            // Fetch updated data after deletion
+            const updatedData = await fetch(
+              "https://fine-tan-bunny-slip.cyclic.app/api/kandyan/getKandyanData"
+            );
+            if (updatedData.ok) {
+              const newData = await updatedData.json();
+              setTableData(newData); // Update tableData state with updated data
+            }
+
+            Swal.fire({
+              icon: "success",
+              title: "Success!",
+              text: "Image deleted successfully.",
+            });
+          } else {
+            throw new Error("Delete request failed");
+          }
+        } catch (error) {
+          console.error("Error deleting image:", error);
+          // Show error message using SweetAlert
+          Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "Failed to delete image. Please try again later.",
+          });
         }
-      );
-
-      if (response.ok) {
-        const data = await response.json();
-        console.log("Image deleted successfully:", data);
-
-        // Fetch updated data after deletion
-        const updatedData = await fetch(
-          "https://fine-tan-bunny-slip.cyclic.app/api/kandyan/getKandyanData"
-        );
-        if (updatedData.ok) {
-          const newData = await updatedData.json();
-          setTableData(newData); // Update tableData state with updated data
-        }
-
-        Swal.fire({
-          icon: "success",
-          title: "Success!",
-          text: "Image deleted successfully.",
-        });
-      } else {
-        throw new Error("Delete request failed");
       }
-    } catch (error) {
-      console.error("Error deleting image:", error);
-      // Show error message using SweetAlert
-      Swal.fire({
-        icon: "error",
-        title: "Error",
-        text: "Failed to delete image. Please try again later.",
-      });
-    }
+    });
   };
 
   return (
@@ -204,19 +217,55 @@ function KandyanAdmin() {
             <tbody>
               {tableData.map((item, index) => (
                 <tr key={index}>
-                  <td>{item.layer1image ? "Uploaded" : "Not Uploaded"}</td>
-                  <td>{item.layer2image ? "Uploaded" : "Not Uploaded"}</td>
-                  <td>{item.layer3image ? "Uploaded" : "Not Uploaded"}</td>
                   <td>
-                    <Button variant="danger" onClick={() => handleDelete(item._id)}>
-                      <FaTrash /> {/* Trash icon */}
-                    </Button>
+                    {item.layer1image ? (
+                      <Badge>Uploaded</Badge>
+                    ) : (
+                      <Badge>Not Uploaded</Badge>
+                    )}
+                  </td>
+                  <td>
+                    {item.layer2image ? (
+                      <Badge>Uploaded</Badge>
+                    ) : (
+                      <Badge>Not Uploaded</Badge>
+                    )}
+                  </td>
+                  <td>
+                    {item.layer3image ? (
+                      <Badge>Uploaded</Badge>
+                    ) : (
+                      <Badge>Not Uploaded</Badge>
+                    )}
+                  </td>
+                  <td>
+                    <FaTrash
+                      style={{ cursor: "pointer", color: "red" }}
+                      onClick={() => handleDelete(item._id)}
+                    />
                   </td>
                 </tr>
               ))}
             </tbody>
           </Table>
         </div>
+      </section>
+      <section className="homecontainer">
+      <div
+          className="content__homecontainer"
+          style={{
+            border: "3px solid #5c48ee",
+            padding: "20px",
+            borderRadius: "10px",
+          }}
+        >
+            <h3>
+            <b>Model Details</b>
+          </h3>
+          <Form>
+            
+          </Form>
+          </div>
       </section>
     </div>
   );

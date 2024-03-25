@@ -9,7 +9,7 @@ const SareeDesigner = () => {
   const [is2LayerAdded, setIs2LayerAdded] = useState(false);
   const [add2Layer, setAdd2Layer] = useState(false);
 
-  const [layer3Color, setLayer3Color] = useState("#00ff00");
+  const [layer3Color, setLayer3Color] = useState("#00FF00");
   const [is3LayerAdded, setIs3LayerAdded] = useState(false);
   const [add3Layer, setAdd3Layer] = useState(false);
 
@@ -237,18 +237,18 @@ const SareeDesigner = () => {
                     <div className="colorButtonContainer">
                       <div
                         className="colorButton"
-                        style={{ backgroundColor: "#FFFF00" }}
+                        style={{ backgroundColor: "transparent" }}
                         onClick={() => changeLayer1Color("transparent")}
                       ></div>
                       <div
                         className="colorButton"
-                        style={{ backgroundColor: "#ff00ff" }}
-                        onClick={() => changeLayer1Color("#ff00ff")}
+                        style={{ backgroundColor: "#FF00FF" }}
+                        onClick={() => changeLayer1Color("#FF00FF")}
                       ></div>
                       <div
                         className="colorButton"
-                        style={{ backgroundColor: "#00ffff" }}
-                        onClick={() => changeLayer1Color("#00ffff")}
+                        style={{ backgroundColor: "#00FFFF" }}
+                        onClick={() => changeLayer1Color("#00FFFF")}
                       ></div>
                     </div>
                   </DropdownButton>
@@ -283,13 +283,13 @@ const SareeDesigner = () => {
                       ></div>
                       <div
                         className="colorButton"
-                        style={{ backgroundColor: "#ff00ff" }}
-                        onClick={() => changeLayer2Color("#ff00ff")}
+                        style={{ backgroundColor: "#FF00FF" }}
+                        onClick={() => changeLayer2Color("#FF00FF")}
                       ></div>
                       <div
                         className="colorButton"
-                        style={{ backgroundColor: "#00ffff" }}
-                        onClick={() => changeLayer2Color("#00ffff")}
+                        style={{ backgroundColor: "#00FFFF" }}
+                        onClick={() => changeLayer2Color("#00FFFF")}
                       ></div>
                     </div>
                   </DropdownButton>
@@ -317,18 +317,18 @@ const SareeDesigner = () => {
                     <div className="colorButtonContainer">
                       <div
                         className="colorButton"
-                        style={{ backgroundColor: "#00ff00" }}
-                        onClick={() => changeLayer2Color("#00ff00")}
+                        style={{ backgroundColor: "#00FF00" }}
+                        onClick={() => changeLayer3Color("#00FF00")}
                       ></div>
                       <div
                         className="colorButton"
-                        style={{ backgroundColor: "#ff00ff" }}
-                        onClick={() => changeLayer3Color("#ff00ff")}
+                        style={{ backgroundColor: "#FF00FF" }}
+                        onClick={() => changeLayer3Color("#FF00FF")}
                       ></div>
                       <div
                         className="colorButton"
-                        style={{ backgroundColor: "#00ffff" }}
-                        onClick={() => changeLayer3Color("#00ffff")}
+                        style={{ backgroundColor: "#00FFFF" }}
+                        onClick={() => changeLayer3Color("#00FFFF")}
                       ></div>
                     </div>
                   </DropdownButton>
