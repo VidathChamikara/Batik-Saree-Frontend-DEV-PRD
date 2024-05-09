@@ -24,7 +24,7 @@ function Landing() {
   const handleSignUp = (e) => {
     e.preventDefault();
     setLoading(true); // Show spinner when the form is being submitted
-    fetch("https://fine-tan-bunny-slip.cyclic.app/contact/postMessage", {
+    fetch("https://fine-tan-bunny-slip.cyclic.app/api/contact/postMessage", {
       method: "POST",
       crossDomain: true,
       headers: {
