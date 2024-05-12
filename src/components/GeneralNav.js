@@ -91,6 +91,13 @@ function GenaralNav() {
                       </Link>
                     </li>
                   </DropdownItem>
+                  <DropdownItem>
+                    <li className="link">
+                      <Link to="/kandyan" style={{ fontSize: "18px" }}>
+                        Indian
+                      </Link>
+                    </li>
+                  </DropdownItem>
                 </DropdownMenu>
               </ButtonDropdown>
             </ButtonGroup>
@@ -118,6 +125,13 @@ function GenaralNav() {
                     <li className="link">
                       <Link to="/kandyanAdmin" style={{ fontSize: "18px" }}>
                         Kandyan
+                      </Link>
+                    </li>
+                  </DropdownItem>
+                  <DropdownItem>
+                    <li className="link">
+                      <Link to="/kandyanAdmin" style={{ fontSize: "18px" }}>
+                        Indian
                       </Link>
                     </li>
                   </DropdownItem>
