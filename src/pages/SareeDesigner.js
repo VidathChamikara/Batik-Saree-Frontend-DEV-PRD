@@ -25,7 +25,7 @@ const SareeDesigner = () => {
     const fetchImages = async () => {
       try {
         const response = await fetch(
-          "https://fine-tan-bunny-slip.cyclic.app/api/kandyan/getKandyanData"
+          "https://batik-saree-backend.vercel.app/api/kandyan/getKandyanData"
         ); // Replace URL_TO_FETCH_IMAGES with your actual endpoint
         if (response.ok) {
           const data = await response.json();

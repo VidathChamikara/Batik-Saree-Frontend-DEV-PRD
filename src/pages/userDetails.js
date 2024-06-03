@@ -11,7 +11,7 @@ const UserDetails = () => {
   const [tokenExpired, setTokenExpired] = useState(false); // State for token expiration
 
   useEffect(() => {
-    fetch("https://fine-tan-bunny-slip.cyclic.app/api/user/userData", {
+    fetch("https://batik-saree-backend.vercel.app/api/user/userData", {
       method: "POST",
       crossDomain: true,
       headers: {

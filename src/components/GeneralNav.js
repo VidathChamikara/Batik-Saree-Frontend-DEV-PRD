@@ -139,9 +139,9 @@ function GenaralNav() {
               </ButtonDropdown>
             </ButtonGroup>
             <li className="link">
-              <a href="#contact" style={{ fontSize: "18px" }}>
+              <Link to="/User" style={{ fontSize: "18px" }}>
                 USERS
-              </a>
+              </Link>
             </li>
           </>
         )}

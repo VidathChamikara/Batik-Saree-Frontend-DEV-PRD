@@ -18,6 +18,7 @@ import GeneralHome from "./pages/GeneralHome";
 import AdminHome from "./pages/AdminHome";
 import Kandyan from "./pages/Kandyan";
 import KandyanAdmin from "./pages/KandyanAdmin";
+import User from "./pages/User";
 
 // Define PrivateRoute component for protecting routes
 const PrivateRoute = ({ element, userType, ...rest }) => {
@@ -78,6 +79,10 @@ function App() {
         <Route
           path="/Home"
           element={<PrivateRoute element={<UserDetails />} />}
+        />
+        <Route
+          path="/User"
+          element={<PrivateRoute element={<User />} />}
         />
 
         {/* Public routes */}

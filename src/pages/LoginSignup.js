@@ -28,7 +28,7 @@ function LoginSignupPage() {
   const handleSignUp = (e) => {
     e.preventDefault();
     setIsLoading(true); // Show loading spinner
-    fetch("https://fine-tan-bunny-slip.cyclic.app/api/user/register", {
+    fetch("https://batik-saree-backend.vercel.app/api/user/register", {
       method: "POST",
       crossDomain: true,
       headers: {
@@ -66,7 +66,7 @@ function LoginSignupPage() {
   const handleSignIn = (e) => {
     e.preventDefault();
     setIsLoading(true); // Show loading spinner
-    fetch("https://fine-tan-bunny-slip.cyclic.app/api/user/login-user", {
+    fetch("https://batik-saree-backend.vercel.app/api/user/login-user", {
       method: "POST",
       crossDomain: true,
       headers: {

@@ -22,7 +22,7 @@ function KandyanAdmin() {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "https://fine-tan-bunny-slip.cyclic.app/api/kandyan/getKandyanData"
+          "https://batik-saree-backend.vercel.app/api/kandyan/getKandyanData"
         );
         if (response.ok) {
           const data = await response.json();
@@ -50,7 +50,7 @@ function KandyanAdmin() {
 
     try {
       const response = await fetch(
-        "https://fine-tan-bunny-slip.cyclic.app/api/kandyan/upload",
+        "https://batik-saree-backend.vercel.app/api/kandyan/upload",
         {
           method: "POST",
           body: formData,
@@ -61,7 +61,7 @@ function KandyanAdmin() {
         const data = await response.json();
         console.log("Image uploaded successfully:", data);
         const updatedData = await fetch(
-          "https://fine-tan-bunny-slip.cyclic.app/api/kandyan/getKandyanData"
+          "https://batik-saree-backend.vercel.app/api/kandyan/getKandyanData"
         );
         if (updatedData.ok) {
           const newData = await updatedData.json();
@@ -112,7 +112,7 @@ function KandyanAdmin() {
       if (result.isConfirmed) {
         try {
           const response = await fetch(
-            `https://fine-tan-bunny-slip.cyclic.app/api/kandyan/deleteKandyan/${id}`,
+            `https://batik-saree-backend.vercel.app/api/kandyan/deleteKandyan/${id}`,
             {
               method: "DELETE",
             }
@@ -124,7 +124,7 @@ function KandyanAdmin() {
 
             // Fetch updated data after deletion
             const updatedData = await fetch(
-              "https://fine-tan-bunny-slip.cyclic.app/api/kandyan/getKandyanData"
+              "https://batik-saree-backend.vercel.app/api/kandyan/getKandyanData"
             );
             if (updatedData.ok) {
               const newData = await updatedData.json();
